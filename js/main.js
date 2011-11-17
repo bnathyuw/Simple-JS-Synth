@@ -17,6 +17,12 @@
 	
 	jsNode.onaudioprocess = process;
 	
-	jsNode.connect(context.destination);
+	document.getElementById("play").onclick = function () {
+		jsNode.connect(context.destination);
+	};
+	
+	document.getElementById("pause").onclick = function () {
+		jsNode.disconnect();
+	};
 
 }());
