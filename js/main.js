@@ -10,7 +10,18 @@
 		x = 0,
 		frequency = 440,
 		sampleRate = context.sampleRate,
-		amplitude = 1,
+		amplitude = new EnvelopeOscillator({
+			duration: 5,
+			sampleRate: sampleRate,
+			waveTable: new ADSRWave({
+				attackTime: 1, 
+				decayTime: 1,
+				sustainLevel: 0.5,
+				sustainTime: 1,
+				releaseTime: 1
+			}),
+			amplitude: 1
+		}),
 		oscillator = new Oscillator({
 			frequency: frequency,
 			sampleRate: sampleRate,
