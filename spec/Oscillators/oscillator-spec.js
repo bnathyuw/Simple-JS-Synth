@@ -48,17 +48,14 @@ describe("Oscillator", function () {
 
 	describe("env osc provides amplitude", function () {
 		beforeEach(function () {
-			var i = 0;
 			waveTable = {
 				getValue: function () {
-					return 0.5;
+					return 0.4;
 				}
 			};
 			amplitude = {
 				next: function () {
-					var returnValue = i < 10 ? i / 10 : 0;
-					i = i + 1;
-					return returnValue;
+					return 0.5;
 				}
 			};
 			frequency = 440;
@@ -75,6 +72,11 @@ describe("Oscillator", function () {
 			var spy = spyOn(amplitude, "next");
 			oscillator.next();
 			expect(spy).toHaveBeenCalled();
+		});
+		
+		it("should return the value from the wave table multiplied by value returned for the amplitude", function () {
+			var result = oscillator.next();
+			expect(result).toEqual(0.2);
 		});
 	});
 });
