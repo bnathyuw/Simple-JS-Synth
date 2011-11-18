@@ -8,13 +8,15 @@
 		jsNode = context.createJavaScriptNode(2048, 1, 1),
 		sineWave = new SineWave(),
 		x = 0,
+		frequency = 440,
+		waveTableSize = 1000,
 		sampleRate = context.sampleRate,
 		process = function (e) {
 			var data = e.outputBuffer.getChannelData(0),
 				i;
 			for (i = 0; i < data.length; i = i + 1) {
 				data[i] = sineWave.getValue(x);
-				x = x + 10;
+				x = x + frequency * waveTableSize / sampleRate;
 			}
 		};
 
