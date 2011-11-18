@@ -45,4 +45,36 @@ describe("Oscillator", function () {
 			expect(result).toEqual(0.375);
 		});
 	});
+
+	describe("env osc provides amplitude", function () {
+		beforeEach(function () {
+			var i = 0;
+			waveTable = {
+				getValue: function () {
+					return 0.5;
+				}
+			};
+			amplitude = {
+				next: function () {
+					var returnValue = i < 10 ? i / 10 : 0;
+					i = i + 1;
+					return returnValue;
+				}
+			};
+			frequency = 440;
+			sampleRate = 44800;
+			oscillator = new Oscillator({
+				waveTable: waveTable,
+				frequency: frequency,
+				sampleRate: sampleRate,
+				amplitude: amplitude
+			});
+		});
+
+		it("should call amplitude.next", function () {
+			var spy = spyOn(amplitude, "next");
+			oscillator.next();
+			expect(spy).toHaveBeenCalled();
+		});
+	});
 });
