@@ -24,9 +24,4 @@ describe("SineWave", function () {
 		var result = sineWave.getValue(750);
 		expect(result.toFixed(4)).toEqual("-1.0000");
 	});
-
-	it("should return a value for an out-of-range index", function () {
-		var result = sineWave.getValue(20250);
-		expect(result.toFixed(4)).toEqual("1.0000");
-	});
 });
