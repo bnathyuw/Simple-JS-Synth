@@ -4,7 +4,7 @@ var SquareWave = (function () {
 
 	var table = [],
 		i,
-		SquareWave = function SquareWave () {};
+		SquareWave = function SquareWave() {};
 
 	for (i = 0; i < 500; i = i + 1) {
 		table.push(1);
@@ -15,6 +15,6 @@ var SquareWave = (function () {
 	}
 
 	SquareWave.prototype = new WaveTableBase(table);
-	
-	return SquareWave
+
+	return SquareWave;
 }());

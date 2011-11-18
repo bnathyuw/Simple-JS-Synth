@@ -4,7 +4,7 @@ var SineWave = (function () {
 
 	var table = [],
 		i = 0,
-		SineWave = function SineWave () {};
+		SineWave = function SineWave() {};
 
 	for (i = 0; i < 1000; i = i + 1) {
 		table.push(Math.sin(i * Math.PI / 500));
