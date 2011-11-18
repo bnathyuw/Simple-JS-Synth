@@ -29,4 +29,9 @@ describe("WaveTableBase", function () {
 		var result = waveTableBase.getValue(0.3715);
 		expect(result).toEqual(0.3715);
 	});
+	
+	it("should know its tableSize", function () {
+		var size = waveTableBase.getTableSize();
+		expect(size).toEqual(table.length);
+	});
 });

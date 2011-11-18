@@ -21,7 +21,11 @@ var WaveTableBase = function (table) {
 			} else {
 				return interpolateValue(index);
 			}
+		},
+		getTableSize = function () {
+			return table.length;
 		};
 
 	this.getValue = getValue;
+	this.getTableSize = getTableSize;
 };

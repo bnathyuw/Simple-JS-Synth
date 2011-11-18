@@ -11,9 +11,14 @@ describe("Oscillator", function () {
 
 	describe("fixed frequency and amplitude", function () {
 		beforeEach(function () {
-			waveTable = { getValue: function () {
-				return 0.5;
-			} };
+			waveTable = { 
+				getValue: function () {
+					return 0.5;
+				},
+				getTableSize: function () {
+					return waveTableSize;
+				}
+			};
 			frequency = 440;
 			sampleRate = 44800;
 			amplitude = 0.75;
@@ -22,8 +27,7 @@ describe("Oscillator", function () {
 				waveTable: waveTable,
 				frequency: frequency,
 				sampleRate: sampleRate,
-				amplitude: amplitude,
-				waveTableSize: waveTableSize
+				amplitude: amplitude
 			});
 		});
 

@@ -9,12 +9,10 @@
 		sineWave = new SineWave(),
 		x = 0,
 		frequency = 440,
-		waveTableSize = 1000,
 		sampleRate = context.sampleRate,
 		amplitude = 1,
 		oscillator = new Oscillator({
 			frequency: frequency,
-			waveTableSize: waveTableSize,
 			sampleRate: sampleRate,
 			waveTable: sineWave,
 			amplitude: amplitude
