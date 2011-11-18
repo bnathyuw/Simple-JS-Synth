@@ -7,10 +7,9 @@ var Oscillator = (function () {
 			frequency = spec.frequency,
 			sampleRate = spec.sampleRate,
 			amplitude = spec.amplitude,
-			waveTableSize = waveTable.getTableSize(),
 			next = function () {
 				var returnValue = waveTable.getValue(currentIndex);
-				currentIndex = currentIndex + frequency * waveTableSize / sampleRate;
+				currentIndex = currentIndex + frequency  / sampleRate;
 				return returnValue * amplitude;
 			};
 

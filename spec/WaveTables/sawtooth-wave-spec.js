@@ -10,18 +10,18 @@ describe("SawtoothWave", function () {
 		expect(result.toFixed(4)).toEqual("0.0000");
 	});
 
-	it("should return 0.5 at position 250", function () {
-		var result = sawtoothWave.getValue(250);
+	it("should return 0.5 at position 0.25", function () {
+		var result = sawtoothWave.getValue(0.25);
 		expect(result.toFixed(4)).toEqual("0.5000");
 	});
 
-	it("should return -1 at position 500", function () {
-		var result = sawtoothWave.getValue(500);
+	it("should return -1 at position 0.5", function () {
+		var result = sawtoothWave.getValue(0.5);
 		expect(result.toFixed(4)).toEqual("-1.0000");
 	});
 
-	it("should return -0.5 at position 750", function () {
-		var result = sawtoothWave.getValue(750);
+	it("should return -0.5 at position 0.75", function () {
+		var result = sawtoothWave.getValue(0.75);
 		expect(result.toFixed(4)).toEqual("-0.5000");
 	});
 });

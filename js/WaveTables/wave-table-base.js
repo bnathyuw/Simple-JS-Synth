@@ -16,16 +16,13 @@ var WaveTableBase = function (table) {
 
 		},
 		getValue = function (index) {
+			index = index * table.length;
 			if (index % 1 === 0) {
 				return getTableValue(index);
 			} else {
 				return interpolateValue(index);
 			}
-		},
-		getTableSize = function () {
-			return table.length;
 		};
 
 	this.getValue = getValue;
-	this.getTableSize = getTableSize;
 };

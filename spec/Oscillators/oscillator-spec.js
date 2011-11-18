@@ -6,23 +6,18 @@ describe("Oscillator", function () {
 		frequency,
 		sampleRate,
 		amplitude,
-		waveTableSize,
 		oscillator;
 
 	describe("fixed frequency and amplitude", function () {
 		beforeEach(function () {
-			waveTable = { 
+			waveTable = {
 				getValue: function () {
 					return 0.5;
-				},
-				getTableSize: function () {
-					return waveTableSize;
 				}
 			};
 			frequency = 440;
 			sampleRate = 44800;
 			amplitude = 0.75;
-			waveTableSize = 1000;
 			oscillator = new Oscillator({
 				waveTable: waveTable,
 				frequency: frequency,
@@ -39,7 +34,7 @@ describe("Oscillator", function () {
 
 		it("should retrieve the second value with the correct index", function () {
 			var spy = spyOn(waveTable, "getValue"),
-				expectedIndex = frequency * waveTableSize / sampleRate;
+				expectedIndex = frequency  / sampleRate;
 			oscillator.next();
 			oscillator.next();
 			expect(spy.mostRecentCall.args[0]).toEqual(expectedIndex);
