@@ -1,4 +1,4 @@
-/*global describe: false, beforeEach: false, it: false, spyOn: false,
+/*global describe: false, beforeEach: false, it: false, spyOn: false, expect: false,
 	Oscillator: false */
 describe("Oscillator", function () {
 	"use strict";
@@ -40,7 +40,7 @@ describe("Oscillator", function () {
 			oscillator.next();
 			expect(spy.mostRecentCall.args[0]).toEqual(expectedIndex);
 		});
-		
+
 		it("should return the value from the wave table multiplied by the amplitude", function () {
 			var result = oscillator.next();
 			expect(result).toEqual(0.375);

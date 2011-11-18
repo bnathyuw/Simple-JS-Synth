@@ -1,5 +1,5 @@
 /*global AudioContext: false, webkitAudioContext: false, document: false,
-	SineWave: false */
+	SineWave: false, Oscillator: false */
 
 (function () {
 	"use strict";
@@ -11,12 +11,19 @@
 		frequency = 440,
 		waveTableSize = 1000,
 		sampleRate = context.sampleRate,
+		amplitude = 1,
+		oscillator = new Oscillator({
+			frequency: frequency,
+			waveTableSize: waveTableSize,
+			sampleRate: sampleRate,
+			waveTable: sineWave,
+			amplitude: amplitude
+		}),
 		process = function (e) {
 			var data = e.outputBuffer.getChannelData(0),
 				i;
 			for (i = 0; i < data.length; i = i + 1) {
-				data[i] = sineWave.getValue(x);
-				x = x + frequency * waveTableSize / sampleRate;
+				data[i] = oscillator.next();
 			}
 		};
 
