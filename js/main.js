@@ -2,7 +2,7 @@
 
 (function () {
 	"use strict";
-	var AC = AudioContext || webkitAudioContext,
+	var AC = webkitAudioContext,
 		context = new AC(),
 		jsNode = context.createJavaScriptNode(2048, 1, 1),
 		x = 0,
