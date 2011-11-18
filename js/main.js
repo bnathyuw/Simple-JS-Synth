@@ -1,8 +1,9 @@
-/*global webkitAudioContext: false */
+/*global AudioContext: false, webkitAudioContext: false, document: false */
 
 (function () {
 	"use strict";
-	var context = new webkitAudioContext(),
+	var AC = AudioContext || webkitAudioContext,
+		context = new AC(),
 		jsNode = context.createJavaScriptNode(2048, 1, 1),
 		x = 0,
 		sampleRate = context.sampleRate,
@@ -14,15 +15,14 @@
 				x = x + 1;
 			}
 		};
-	
+
 	jsNode.onaudioprocess = process;
-	
+
 	document.getElementById("play").onclick = function () {
 		jsNode.connect(context.destination);
 	};
-	
+
 	document.getElementById("pause").onclick = function () {
 		jsNode.disconnect();
 	};
-
 }());
