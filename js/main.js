@@ -1,18 +1,20 @@
-/*global AudioContext: false, webkitAudioContext: false, document: false */
+/*global AudioContext: false, webkitAudioContext: false, document: false,
+	SineWave: false */
 
 (function () {
 	"use strict";
 	var AC = webkitAudioContext,
 		context = new AC(),
 		jsNode = context.createJavaScriptNode(2048, 1, 1),
+		sineWave = new SineWave(),
 		x = 0,
 		sampleRate = context.sampleRate,
 		process = function (e) {
 			var data = e.outputBuffer.getChannelData(0),
 				i;
 			for (i = 0; i < data.length; i = i + 1) {
-				data[i] = Math.sin(x * 2 * Math.PI * 440 / sampleRate);
-				x = x + 1;
+				data[i] = sineWave.getValue(x);
+				x = x + 10;
 			}
 		};
 
