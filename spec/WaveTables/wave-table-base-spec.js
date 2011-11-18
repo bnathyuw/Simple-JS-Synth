@@ -22,6 +22,11 @@ describe("WaveTableBase", function () {
 
 	it("should return a value for a fractional index", function () {
 		var result = waveTableBase.getValue(0.5);
-		expect(result).toBeDefined();
+		expect(result).toEqual(0.5);
+	});
+	
+	it("should return a value for another fractional index", function () {
+		var result = waveTableBase.getValue(0.3715);
+		expect(result).toEqual(0.3715);
 	});
 });
