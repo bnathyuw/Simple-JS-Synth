@@ -11,6 +11,6 @@ var SineWave = (function () {
 	}
 
 	SineWave.prototype = new WaveTableBase(table);
-	
+
 	return SineWave;
 }());
