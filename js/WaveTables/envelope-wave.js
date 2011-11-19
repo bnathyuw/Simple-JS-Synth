@@ -1,5 +1,5 @@
 /*global Envelope: false */
-var EnvelopeWaveTable = function (table) {
+var EnvelopeWave = function (table) {
 	"use strict";
 
 	var getTableValue = function (index) {

@@ -1,4 +1,4 @@
-/*global WaveTable: false */
+/*global LoopWave: false */
 var SawtoothWave = (function () {
 	"use strict";
 
@@ -10,7 +10,7 @@ var SawtoothWave = (function () {
 		table.push(((i + 500) % 1000) / 500 - 1);
 	}
 
-	SawtoothWave.prototype = new WaveTable(table);
+	SawtoothWave.prototype = new LoopWave(table);
 
 	return SawtoothWave;
 }());

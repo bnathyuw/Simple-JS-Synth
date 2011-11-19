@@ -1,4 +1,4 @@
-/*global WaveTable: false */
+/*global LoopWave: false */
 var ADSRWave = function (spec) {
 	"use strict";
 
@@ -29,7 +29,7 @@ var ADSRWave = function (spec) {
 	
 	table.push(0);
 
-	ADSRWave.prototype = new EnvelopeWaveTable(table);
+	ADSRWave.prototype = new EnvelopeWave(table);
 
 	return new ADSRWave();
 };

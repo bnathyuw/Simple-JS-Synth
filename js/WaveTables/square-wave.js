@@ -1,4 +1,4 @@
-/*global WaveTable: false */
+/*global LoopWave: false */
 var SquareWave = (function () {
 	"use strict";
 
@@ -14,7 +14,7 @@ var SquareWave = (function () {
 		table.push(-1);
 	}
 
-	SquareWave.prototype = new WaveTable(table);
+	SquareWave.prototype = new LoopWave(table);
 
 	return SquareWave;
 }());

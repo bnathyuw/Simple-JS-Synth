@@ -1,13 +1,13 @@
 /*global describe: false, beforeEach: false, it: false, expect: false,
 	Envelope: false */
-describe("EnvelopeWaveTable", function () {
+describe("EnvelopeWave", function () {
 	"use strict";
 
 	var table = [1, 1, 1, 0.5, 0],
 		envelope;
 
 	beforeEach(function () {
-		envelope = new EnvelopeWaveTable(table);
+		envelope = new EnvelopeWave(table);
 	});
 
 	it("should look up the value from the supplied table", function () {

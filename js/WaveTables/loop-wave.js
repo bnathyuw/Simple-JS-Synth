@@ -1,4 +1,4 @@
-var WaveTable = function (table) {
+var LoopWave = function (table) {
 	"use strict";
 
 	var getTableValue = function (index) {
