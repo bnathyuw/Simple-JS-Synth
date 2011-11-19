@@ -1,13 +1,13 @@
 ﻿/*global describe: false, beforeEach: false, it: false, expect: false,
-	WaveTableBase: false */
-describe("WaveTableBase", function () {
+	WaveTable: false */
+describe("WaveTable", function () {
 	"use strict";
 
 	var table = [0, 1],
 		waveTableBase;
 
 	beforeEach(function () {
-		waveTableBase = new WaveTableBase(table);
+		waveTableBase = new WaveTable(table);
 	});
 
 	it("should look up the value from the supplied table", function () {

@@ -1,4 +1,4 @@
-var WaveTableBase = function (table) {
+var WaveTable = function (table) {
 	"use strict";
 
 	var getTableValue = function (index) {

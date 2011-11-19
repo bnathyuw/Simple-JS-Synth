@@ -27,7 +27,7 @@
 			frequency = new EnvelopeGenerator({
 				duration: 5,
 				sampleRate: sampleRate,
-				waveTable: new WaveTableBase([440, 440, 440, 550, 660, 660, 660, 220]),
+				waveTable: new EnvelopeWaveTable([440, 440, 440, 550, 660, 660, 660, 220]),
 				amplitude: 1
 			}),
 			oscillator = new Oscillator({

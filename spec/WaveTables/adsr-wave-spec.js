@@ -15,7 +15,7 @@ describe("ADSRWave", function () {
 			sustainTime: sustainTime,
 			releaseTime: releaseTime
 		}),
-		expectedValues = [0, 0.5, 1, 0.875, 0.75, 0.75, 0.75, 0.75, 0.5, 0.25],
+		expectedValues = [0, 0.5, 1, 0.875, 0.75, 0.75, 0.75, 0.75, 0.5, 0.25, 0],
 		i = 0,
 		length;
 
@@ -67,5 +67,10 @@ describe("ADSRWave", function () {
 	it("should return correct value for index 0.9", function () {
 		var result = adsrWave.getValue(0.9);
 		expect(result).toEqual(expectedValues[9]);
+	});
+
+	it("should return correct value for index 1", function () {
+		var result = adsrWave.getValue(1);
+		expect(result).toEqual(expectedValues[10]);
 	});
 });

@@ -1,4 +1,4 @@
-/*global WaveTableBase: false */
+/*global WaveTable: false */
 var SineWave = (function () {
 	"use strict";
 
@@ -10,7 +10,7 @@ var SineWave = (function () {
 		table.push(Math.sin(i * Math.PI / 500));
 	}
 
-	SineWave.prototype = new WaveTableBase(table);
+	SineWave.prototype = new WaveTable(table);
 
 	return SineWave;
 }());

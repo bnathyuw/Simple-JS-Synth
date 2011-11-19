@@ -1,4 +1,4 @@
-/*global WaveTableBase: false */
+/*global WaveTable: false */
 var SawtoothWave = (function () {
 	"use strict";
 
@@ -10,7 +10,7 @@ var SawtoothWave = (function () {
 		table.push(((i + 500) % 1000) / 500 - 1);
 	}
 
-	SawtoothWave.prototype = new WaveTableBase(table);
+	SawtoothWave.prototype = new WaveTable(table);
 
 	return SawtoothWave;
 }());

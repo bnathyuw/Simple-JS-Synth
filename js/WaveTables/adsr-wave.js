@@ -1,4 +1,4 @@
-/*global WaveTableBase: false */
+/*global WaveTable: false */
 var ADSRWave = function (spec) {
 	"use strict";
 
@@ -26,8 +26,10 @@ var ADSRWave = function (spec) {
 	for (i = 0; i < releaseTime; i = i + 1) {
 		table.push(sustainLevel - sustainLevel * i / releaseTime);
 	}
+	
+	table.push(0);
 
-	ADSRWave.prototype = new WaveTableBase(table);
+	ADSRWave.prototype = new EnvelopeWaveTable(table);
 
 	return new ADSRWave();
 };
