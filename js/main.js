@@ -7,54 +7,42 @@
 	var AC = webkitAudioContext,
 		context = new AC(),
 		x = 0,
-		sampleRate = context.sampleRate
+		sampleRate = context.sampleRate,
+		amplitudeWave = new ADSRWave({
+			attackTime: 1, 
+			decayTime: 1,
+			sustainLevel: 0.5,
+			sustainTime: 1,
+			releaseTime: 1
+		}),
+		frequencyWave = new EnvelopeWave([440, 440, 440, 550, 660, 660, 660, 220]),
+		oscillatorWave = new SineWave();
 
 	document.getElementById("play").onclick = function () {
-		var jsNode = context.createJavaScriptNode(2048, 1, 1),
-			wave = new SineWave(),
-			amplitude = new EnvelopeGenerator({
+		var amplitude = new EnvelopeGenerator({
 				duration: 5,
 				sampleRate: sampleRate,
-				waveTable: new ADSRWave({
-					attackTime: 1, 
-					decayTime: 1,
-					sustainLevel: 0.5,
-					sustainTime: 1,
-					releaseTime: 1
-				}),
+				waveTable: amplitudeWave,
 				amplitude: 1
 			}),
 			frequency = new EnvelopeGenerator({
 				duration: 5,
 				sampleRate: sampleRate,
-				waveTable: new EnvelopeWave([440, 440, 440, 550, 660, 660, 660, 220]),
+				waveTable: frequencyWave,
 				amplitude: 1
 			}),
 			oscillator = new Oscillator({
 				frequency: frequency,
 				sampleRate: sampleRate,
-				waveTable: wave,
+				waveTable: oscillatorWave,
 				amplitude: amplitude
 			}),
-			process = function (e) {
-				var data = e.outputBuffer.getChannelData(0),
-					i;
-				for (i = 0; i < data.length; i = i + 1) {
-					try {
-						data[i] = oscillator.next();
-					} catch (exception) {
-						if (exception.name === "EnvelopeComplete") {
-							jsNode.onaudioprocess = function () {
-								jsNode.disconnect();
-							};
-						} else {
-							throw exception;
-						}
-					}
-				}
-			};
-
-		jsNode.onaudioprocess = process;
-		jsNode.connect(context.destination);
+			
+			oscillatorNode = new OscillatorJavaScriptNode({
+				context: context,
+				oscillator: oscillator
+			});
+		
+		oscillatorNode.connect(context.destination);
 	};
 }());
