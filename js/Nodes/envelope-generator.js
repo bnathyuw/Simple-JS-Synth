@@ -1,7 +1,7 @@
-var EnvelopeOscillator = (function () {
+var EnvelopeGenerator = (function () {
 	"use strict";
 
-	var EnvelopeOscillator = function EnvelopeOscillator(spec) {
+	var EnvelopeGenerator = function EnvelopeGenerator(spec) {
 		var currentIndex = 0,
 			waveTable = spec.waveTable,
 			duration = spec.duration,
@@ -20,5 +20,5 @@ var EnvelopeOscillator = (function () {
 		this.next = next;
 	};
 
-	return EnvelopeOscillator;
+	return EnvelopeGenerator;
 }());

@@ -13,7 +13,7 @@
 	document.getElementById("play").onclick = function () {
 		var jsNode = context.createJavaScriptNode(2048, 1, 1),
 			sineWave = new SineWave(),
-			amplitude = new EnvelopeOscillator({
+			amplitude = new EnvelopeGenerator({
 				duration: 5,
 				sampleRate: sampleRate,
 				waveTable: new ADSRWave({
@@ -42,9 +42,5 @@
 
 		jsNode.onaudioprocess = process;
 		jsNode.connect(context.destination);
-	};
-
-	document.getElementById("pause").onclick = function () {
-		jsNode.disconnect();
 	};
 }());

@@ -1,6 +1,6 @@
 /*global describe: false, beforeEach: false, it: false, spyOn: false, expect: false,
-	EnvelopeOscillator: false */
-describe("EnvelopeOscillator", function () {
+	EnvelopeGenerator: false */
+describe("EnvelopeGenerator", function () {
 	"use strict";
 	var waveTable,
 		duration,
@@ -18,7 +18,7 @@ describe("EnvelopeOscillator", function () {
 			duration = 2;
 			sampleRate = 2;
 			amplitude = 0.75;
-			oscillator = new EnvelopeOscillator({
+			oscillator = new EnvelopeGenerator({
 				waveTable: waveTable,
 				duration: duration,
 				sampleRate: sampleRate,
