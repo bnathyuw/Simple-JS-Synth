@@ -45,14 +45,16 @@ describe("EnvelopeGenerator", function () {
 			expect(result).toEqual(0.375);
 		});
 
-		it("should return 0 once and only once the duration has passed", function () {
+		it("should throw envelope complete once the duration has passed", function () {
 			var i, limit;
 			for (i = 0, limit = sampleRate * duration; i < limit; i = i + 1) {
 				expect(oscillator.next()).not.toEqual(0);
 			}
-			for (i = 0; i < 10; i = i + 1) {
-				expect(oscillator.next()).toEqual(0);
-			}
+			expect(function () {
+				oscillator.next();
+			}).toThrow({
+				name: "EnvelopeComplete"
+			});
 		});
 	});
 });

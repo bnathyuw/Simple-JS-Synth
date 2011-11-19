@@ -9,7 +9,7 @@ var EnvelopeGenerator = (function () {
 			amplitude = spec.amplitude,
 			next = function () {
 				if (currentIndex >= 1) {
-					return 0;
+					throw { name: "EnvelopeComplete" };
 				}
 
 				var returnValue	= waveTable.getValue(currentIndex);

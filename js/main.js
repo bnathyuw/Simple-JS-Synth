@@ -36,12 +36,21 @@
 				waveTable: wave,
 				amplitude: amplitude
 			}),
-
 			process = function (e) {
 				var data = e.outputBuffer.getChannelData(0),
 					i;
 				for (i = 0; i < data.length; i = i + 1) {
-					data[i] = oscillator.next();
+					try {
+						data[i] = oscillator.next();
+					} catch (exception) {
+						if (exception.name === "EnvelopeComplete") {
+							jsNode.onaudioprocess = function () {
+								jsNode.disconnect();
+							};
+						} else {
+							throw exception;
+						}
+					}
 				}
 			};
 
