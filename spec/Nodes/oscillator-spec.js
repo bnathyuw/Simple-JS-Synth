@@ -46,7 +46,7 @@ describe("Oscillator", function () {
 		});
 	});
 
-	describe("env osc provides amplitude", function () {
+	describe("env gen provides amplitude", function () {
 		beforeEach(function () {
 			waveTable = {
 				getValue: function () {
@@ -67,7 +67,7 @@ describe("Oscillator", function () {
 				amplitude: amplitude
 			});
 		});
-
+		
 		it("should call amplitude.next", function () {
 			var spy = spyOn(amplitude, "next");
 			oscillator.next();
@@ -79,4 +79,42 @@ describe("Oscillator", function () {
 			expect(result).toEqual(0.2);
 		});
 	});
+	
+	describe("env get provides frequency", function () {
+		beforeEach(function () {
+			waveTable = {
+				getValue: function () {
+					return 0.4;
+				}
+			};
+			amplitude = 1;
+			frequency = {
+				next: function () {
+					return 448;
+				}
+			};
+			sampleRate = 44800;
+			oscillator = new Oscillator({
+				waveTable: waveTable,
+				frequency: frequency,
+				sampleRate: sampleRate,
+				amplitude: amplitude
+			});
+		});
+		
+		it("should call frequency.next", function () {
+			var spy = spyOn(frequency, "next");
+			oscillator.next();
+			expect(spy).toHaveBeenCalled();
+		});
+		
+		it("should use the value from the frequency generator to look up the wave value", function () {
+			var spy = spyOn(waveTable, "getValue");
+			oscillator.next();
+			oscillator.next();
+			expect(spy.mostRecentCall.args[0]).toEqual(0.01);
+		})
+		
+	});
+	
 });
