@@ -8,5 +8,4 @@ var FrequencyCentrer = function FrequencyCentrer(spec) {
 		};
 
 	this.next = next;
-
 };
