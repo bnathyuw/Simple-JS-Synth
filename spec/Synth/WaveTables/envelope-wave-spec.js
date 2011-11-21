@@ -1,5 +1,5 @@
 /*global describe: false, beforeEach: false, it: false, expect: false,
-	Envelope: false */
+	EnvelopeWave: false */
 describe("EnvelopeWave", function () {
 	"use strict";
 

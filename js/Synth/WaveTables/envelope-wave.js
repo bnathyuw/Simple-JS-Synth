@@ -1,3 +1,4 @@
+/*global WaveBase: false */
 var EnvelopeWave = function (table) {
 	"use strict";
 	return new WaveBase({
@@ -5,7 +6,7 @@ var EnvelopeWave = function (table) {
 		getTableValue: function (index) {
 			return table[index];
 		},
-		getTableLength: function() {
+		getTableLength: function () {
 			return table.length - 1;
 		}
 	});

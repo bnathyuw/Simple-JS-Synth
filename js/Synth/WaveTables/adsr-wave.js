@@ -1,4 +1,5 @@
-/*global LoopWave: false */
+/*global LoopWave: false,
+	EnvelopeWave: false */
 var ADSRWave = function (spec) {
 	"use strict";
 
@@ -26,7 +27,7 @@ var ADSRWave = function (spec) {
 	for (i = 0; i < releaseTime; i = i + 1) {
 		table.push(sustainLevel - sustainLevel * i / releaseTime);
 	}
-	
+
 	table.push(0);
 
 	ADSRWave.prototype = new EnvelopeWave(table);

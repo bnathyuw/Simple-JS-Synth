@@ -1,11 +1,12 @@
+/*global WaveBase: false */
 var LoopWave = function (table) {
 	"use strict";
-  return new WaveBase({
+	return new WaveBase({
 		table: table,
 		getTableValue: function (index) {
 			return table[index % table.length];
 		},
-		getTableLength: function() {
+		getTableLength: function () {
 			return table.length;
 		}
 	});

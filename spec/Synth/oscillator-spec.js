@@ -67,19 +67,19 @@ describe("Oscillator", function () {
 				amplitude: amplitude
 			});
 		});
-		
+
 		it("should call amplitude.next", function () {
 			var spy = spyOn(amplitude, "next");
 			oscillator.next();
 			expect(spy).toHaveBeenCalled();
 		});
-		
+
 		it("should return the value from the wave table multiplied by value returned for the amplitude", function () {
 			var result = oscillator.next();
 			expect(result).toEqual(0.2);
 		});
 	});
-	
+
 	describe("env get provides frequency", function () {
 		beforeEach(function () {
 			waveTable = {
@@ -101,20 +101,20 @@ describe("Oscillator", function () {
 				amplitude: amplitude
 			});
 		});
-		
+
 		it("should call frequency.next", function () {
 			var spy = spyOn(frequency, "next");
 			oscillator.next();
 			expect(spy).toHaveBeenCalled();
 		});
-		
+
 		it("should use the value from the frequency generator to look up the wave value", function () {
 			var spy = spyOn(waveTable, "getValue");
 			oscillator.next();
 			oscillator.next();
 			expect(spy.mostRecentCall.args[0]).toEqual(0.01);
-		})
-		
+		});
+
 	});
-	
+
 });

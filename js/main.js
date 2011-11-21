@@ -1,6 +1,6 @@
 /*global AudioContext: false, webkitAudioContext: false, document: false,
-
-	SineWave: false, Oscillator: false */
+	SineWave: false, Oscillator: false, ADSRWave: false, EnvelopeWave: false,
+	EnvelopeGenerator: false, OscillatorJavaScriptNode: false */
 
 (function () {
 	"use strict";
@@ -9,7 +9,7 @@
 		x = 0,
 		sampleRate = context.sampleRate,
 		amplitudeWave = new ADSRWave({
-			attackTime: 1, 
+			attackTime: 1,
 			decayTime: 1,
 			sustainLevel: 0.5,
 			sustainTime: 1,
@@ -37,12 +37,12 @@
 				waveTable: oscillatorWave,
 				amplitude: amplitude
 			}),
-			
+
 			oscillatorNode = new OscillatorJavaScriptNode({
 				context: context,
 				oscillator: oscillator
 			});
-		
+
 		oscillatorNode.connect(context.destination);
 	};
 }());
