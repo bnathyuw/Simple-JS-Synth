@@ -7,7 +7,6 @@
 	"use strict";
 	var AC = webkitAudioContext,
 		context = new AC(),
-		x = 0,
 		sampleRate = context.sampleRate,
 		amplitudeWave = new ADSRWave({
 			attackTime: 0.2,
@@ -48,7 +47,7 @@
 			oscillators.push(new Oscillator({
 				frequency: frequency,
 				sampleRate: sampleRate,
-				waveTable: new SineWave(),
+				waveTable: oscillatorWave,
 				amplitude: amplitude
 			}));
 		}

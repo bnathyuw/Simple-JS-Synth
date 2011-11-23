@@ -1,8 +1,7 @@
 var WaveBase = function (spec) {
 	"use strict";
 
-	var table = spec.table,
-		getTableValue = spec.getTableValue,
+	var getTableValue = spec.getTableValue,
 		getTableLength = spec.getTableLength,
 		interpolateValue = function (index) {
 			var i1 = Math.floor(index),
