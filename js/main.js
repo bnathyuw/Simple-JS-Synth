@@ -15,7 +15,7 @@
 			sustainTime: 1,
 			releaseTime: 1
 		}),
-		frequencyWave = new EnvelopeWave([440, 440, 440, 550, 660, 660, 660, 220]),
+		frequencyWave = new SineWave(),
 		oscillatorWave = new SineWave();
 
 	document.getElementById("play").onclick = function () {
@@ -25,11 +25,14 @@
 				waveTable: amplitudeWave,
 				amplitude: 1
 			}),
-			frequency = new EnvelopeGenerator({
-				duration: 5,
-				sampleRate: sampleRate,
-				waveTable: frequencyWave,
-				amplitude: 1
+			frequency = new FrequencyCentrer({
+				envelope: new Oscillator({
+					frequency: 8,
+					sampleRate: sampleRate,
+					waveTable: frequencyWave,
+					amplitude: 5
+				}),
+				frequency: 440
 			}),
 			oscillator = new Oscillator({
 				frequency: frequency,
