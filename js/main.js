@@ -20,60 +20,41 @@
 
 	document.getElementById("play").onclick = function () {
 		var amplitude = new EnvelopeGenerator({
-				duration: 5,
+				duration: 10,
 				sampleRate: sampleRate,
 				waveTable: amplitudeWave,
 				amplitude: 1
 			}),
-			compoundWave = new OscillatorAdder({
-				oscillators: [
-					new Oscillator({
-						frequency: new FrequencyCentrer({
-							wave: new Oscillator({
-								frequency: 8,
-								sampleRate: sampleRate,
-								waveTable: frequencyWave,
-								amplitude: 5
-							}),
-							frequency: 440
-						}),
+			compoundWave,
+			oscillators = [],
+			oscillatorNode,
+			i;
+		
+		for (i = 0; i < 10; i = i + 1) {
+			oscillators.push(new Oscillator({
+				frequency: new FrequencyCentrer({
+					wave: new Oscillator({
+						frequency: 8,
 						sampleRate: sampleRate,
-						waveTable: oscillatorWave,
-						amplitude: amplitude
+						waveTable: frequencyWave,
+						amplitude: 5
 					}),
-					new Oscillator({
-						frequency: new FrequencyCentrer({
-							wave: new Oscillator({
-								frequency: 8,
-								sampleRate: sampleRate,
-								waveTable: frequencyWave,
-								amplitude: 5
-							}),
-							frequency: 440 * 1.5
-						}),
-						sampleRate: sampleRate,
-						waveTable: oscillatorWave,
-						amplitude: amplitude
-					}),
-					new Oscillator({
-						frequency: new FrequencyCentrer({
-							wave: new Oscillator({
-								frequency: 8,
-								sampleRate: sampleRate,
-								waveTable: frequencyWave,
-								amplitude: 5
-							}),
-							frequency: 440 * 1.5 * 1.5
-						}),
-						sampleRate: sampleRate,
-						waveTable: oscillatorWave,
-						amplitude: amplitude
-					})
-				]
-			}),oscillatorNode = new OscillatorJavaScriptNode({
-				context: context,
-				oscillator: compoundWave
-			});
+					frequency: 440 * (2 * i + 1)
+				}),
+				sampleRate: sampleRate,
+				waveTable: new SineWave(),
+				amplitude: amplitude
+			}));
+		}
+		
+		compoundWave = new OscillatorAdder({
+			oscillators: oscillators
+		});
+		
+		oscillatorNode = new OscillatorJavaScriptNode({
+			context: context,
+			oscillator: compoundWave
+		});
 
 		oscillatorNode.connect(context.destination);
 	};
