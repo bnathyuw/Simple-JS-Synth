@@ -2,9 +2,9 @@ var FrequencyCentrer = function FrequencyCentrer(spec) {
 	"use strict";
 
 	var frequency = spec.frequency,
-		envelope = spec.envelope,
+		wave = spec.wave,
 		next = function () {
-			return envelope.next() + frequency;
+			return wave.next() + frequency;
 		};
 
 	this.next = next;

@@ -3,26 +3,26 @@
 describe("FrequencyCentrer", function () {
 	"use strict";
 	var frequency = 440,
-		envelope,
+		wave,
 		frequencyCentrer;
 
 	beforeEach(function () {
 		var i = 0;
-		envelope = {
+		wave = {
 			next: function () {
 				i = i + 0.1;
 				return i;
 			}
 		};
 		frequencyCentrer = new FrequencyCentrer({
-			envelope: envelope,
+			wave: wave,
 			frequency: frequency
 		});
 	});
 
 	describe("next", function () {
-		it("should retrieve the first value from the envelope", function () {
-			var spy = spyOn(envelope, "next").andCallThrough();
+		it("should retrieve the first value from the wave", function () {
+			var spy = spyOn(wave, "next").andCallThrough();
 			frequencyCentrer.next();
 			expect(spy).toHaveBeenCalled();
 		});

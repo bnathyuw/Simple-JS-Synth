@@ -9,11 +9,11 @@
 		x = 0,
 		sampleRate = context.sampleRate,
 		amplitudeWave = new ADSRWave({
-			attackTime: 1,
-			decayTime: 1,
+			attackTime: 0.2,
+			decayTime: 0.2,
 			sustainLevel: 0.5,
 			sustainTime: 1,
-			releaseTime: 1
+			releaseTime: 0.2
 		}),
 		frequencyWave = new SineWave(),
 		oscillatorWave = new SineWave();
@@ -25,25 +25,54 @@
 				waveTable: amplitudeWave,
 				amplitude: 1
 			}),
-			frequency = new FrequencyCentrer({
-				envelope: new Oscillator({
-					frequency: 8,
-					sampleRate: sampleRate,
-					waveTable: frequencyWave,
-					amplitude: 5
-				}),
-				frequency: 440
-			}),
-			oscillator = new Oscillator({
-				frequency: frequency,
-				sampleRate: sampleRate,
-				waveTable: oscillatorWave,
-				amplitude: amplitude
-			}),
-
-			oscillatorNode = new OscillatorJavaScriptNode({
+			compoundWave = new OscillatorAdder({
+				oscillators: [
+					new Oscillator({
+						frequency: new FrequencyCentrer({
+							wave: new Oscillator({
+								frequency: 8,
+								sampleRate: sampleRate,
+								waveTable: frequencyWave,
+								amplitude: 5
+							}),
+							frequency: 440
+						}),
+						sampleRate: sampleRate,
+						waveTable: oscillatorWave,
+						amplitude: amplitude
+					}),
+					new Oscillator({
+						frequency: new FrequencyCentrer({
+							wave: new Oscillator({
+								frequency: 8,
+								sampleRate: sampleRate,
+								waveTable: frequencyWave,
+								amplitude: 5
+							}),
+							frequency: 440 * 1.5
+						}),
+						sampleRate: sampleRate,
+						waveTable: oscillatorWave,
+						amplitude: amplitude
+					}),
+					new Oscillator({
+						frequency: new FrequencyCentrer({
+							wave: new Oscillator({
+								frequency: 8,
+								sampleRate: sampleRate,
+								waveTable: frequencyWave,
+								amplitude: 5
+							}),
+							frequency: 440 * 1.5 * 1.5
+						}),
+						sampleRate: sampleRate,
+						waveTable: oscillatorWave,
+						amplitude: amplitude
+					})
+				]
+			}),oscillatorNode = new OscillatorJavaScriptNode({
 				context: context,
-				oscillator: oscillator
+				oscillator: compoundWave
 			});
 
 		oscillatorNode.connect(context.destination);
