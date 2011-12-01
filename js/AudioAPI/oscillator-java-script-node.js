@@ -2,7 +2,7 @@ var OscillatorJavaScriptNode = function OscillatorJavaScriptNode(spec) {
 	"use strict";
 	var context = spec.context,
 		oscillator = spec.oscillator,
-		jsNode = context.createJavaScriptNode(2048, 1, 1),
+		jsNode = context.createJavaScriptNode(2048, 0, 1),
 		disconnect = function () {
 			jsNode.disconnect();
 		},
