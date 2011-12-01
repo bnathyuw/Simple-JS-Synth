@@ -1,20 +1,8 @@
-/*global LoopWave: false */
-var SquareWave = (function () {
-	"use strict";
+var SquareWave = function SquareWave(){
+	var getValue = function(index) {
+			var i = index % 1;
+			return i < 0.5 ? 1 : -1;
+		};
 
-	var table = [],
-		i,
-		SquareWave = function SquareWave() {};
-
-	for (i = 0; i < 500; i = i + 1) {
-		table.push(1);
-	}
-
-	for (i = 500; i < 1000; i = i + 1) {
-		table.push(-1);
-	}
-
-	SquareWave.prototype = new LoopWave(table);
-
-	return SquareWave;
-}());
+	this.getValue = getValue;
+};

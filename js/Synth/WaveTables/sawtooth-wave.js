@@ -1,16 +1,11 @@
 /*global LoopWave: false */
-var SawtoothWave = (function () {
+var SawtoothWave = function SawtoothWave() {
 	"use strict";
 
-	var table = [],
-		i = 0,
-		SawtoothWave = function SawtoothWave() {};
+	var getValue = function (index) {
+			var i = index * 1000;
+			return ((i + 500) % 1000) / 500 - 1;
+		};
 
-	for (i = 0; i < 1000; i = i + 1) {
-		table.push(((i + 500) % 1000) / 500 - 1);
-	}
-
-	SawtoothWave.prototype = new LoopWave(table);
-
-	return SawtoothWave;
-}());
+	this.getValue = getValue;
+};
