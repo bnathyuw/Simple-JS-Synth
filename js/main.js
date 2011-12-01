@@ -1,5 +1,6 @@
 /*global AudioContext: false, webkitAudioContext: false, document: false,
 	SineWave: false, Oscillator: false, ADSRWave: false, EnvelopeWave: false,
+	TriangleWave: false,
 	EnvelopeGenerator: false, OscillatorJavaScriptNode: false, FrequencyCentrer: false,
 	OscillatorAdder: false */
 
@@ -24,6 +25,7 @@
 			compoundWave,
 			oscillators = [],
 			oscillatorNode,
+			simpleWave,
 			i;
 
 		for (i = 0; i < 20; i = i + 1) {
@@ -56,9 +58,16 @@
 			oscillators: oscillators
 		});
 
+		simpleWave = new Oscillator({
+			frequency: 440,
+			amplitude: 1,
+			waveTable: new TriangleWave(),
+			sampleRate: context.sampleRate
+		});
+
 		oscillatorNode = new OscillatorJavaScriptNode({
 			context: context,
-			oscillator: compoundWave
+			oscillator: simpleWave
 		});
 
 		oscillatorNode.connect(context.destination);
