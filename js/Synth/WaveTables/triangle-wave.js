@@ -1,7 +1,7 @@
-var TriangleWave = function TriangleWave(){
+var TriangleWave = function TriangleWave() {
 	"use strict";
 
-	var getValue = function(index) {
+	var getValue = function (index) {
 			var i = index % 1;
 			if (i < 0.25) {
 				return i * 4;
