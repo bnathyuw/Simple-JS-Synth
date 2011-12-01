@@ -1,16 +1,10 @@
 /*global LoopWave: false */
-var SineWave = (function () {
+var SineWave = function SineWave() {
 	"use strict";
 
-	var table = [],
-		i = 0,
-		SineWave = function SineWave() {};
-
-	for (i = 0; i < 1000; i = i + 1) {
-		table.push(Math.sin(i * Math.PI / 500));
+	var getValue = function (index) {
+		return Math.sin(2 * Math.PI * index);
 	}
 
-	SineWave.prototype = new LoopWave(table);
-
-	return SineWave;
-}());
+	this.getValue = getValue;
+};
