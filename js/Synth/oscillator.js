@@ -17,7 +17,7 @@ var Oscillator = (function () {
 			},
 			next = function () {
 				var returnValue = waveTable.getValue(currentIndex);
-				currentIndex = currentIndex + frequency.next()  / sampleRate;
+				currentIndex = currentIndex + frequency.next() / sampleRate;
 				return returnValue * amplitude.next();
 			};
 
