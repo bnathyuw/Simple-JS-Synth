@@ -1,11 +1,11 @@
 /*jslint browser: true */
-/*global webkitAudioContext: false, OscillatorJavaScriptNode: false, Oscillator: false */
+/*global webkitAudioContext: false, OscillatorJavaScriptNode: false,
+	Oscillator: false, CallbackGenerator: false, SineWave: false */
 (function () {
 	"use strict";
 
 	var freqSlider = document.getElementsByName("frequency")[0],
 		ampSlider = document.getElementsByName("amplitude")[0],
-		waveformRadios = document.getElementsByName("waveform"),
 		playButton = document.getElementsByName("play")[0],
 		stopButton = document.getElementsByName("stop")[0],
 		freqSpan = document.createElement("span"),
@@ -20,19 +20,6 @@
 
 		getAmp = function () {
 			return +ampSlider.value;
-		},
-
-		getWaveform = function () {
-			var i,
-				length,
-				radio;
-			for (i = 0, length = waveformRadios.length; i < length; i = i + 1) {
-				radio = waveformRadios[i];
-				if (radio.checked) {
-					return radio.value;
-				}
-			}
-			return "SineWave";
 		},
 
 		updateFreq = function () {
