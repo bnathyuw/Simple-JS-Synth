@@ -1,14 +1,14 @@
 <!doctype html>
 <html>
 <head>
-<title>Play note continuously</title>
+<title>Amplitude modulation</title>
 <style>
 label { display: block; }
 </style>
 </head>
 <body>
 <header>
-	<h1>Play note continuously</h1>
+	<h1>Amplitude modulation</h1>
 </header>
 <nav>
 <ul>
@@ -18,14 +18,14 @@ label { display: block; }
 	<li><a href="amplitude-modulation.html">Amplitude modulation</a></li>
 </ul>
 </nav>
-<label>Frequency <input type="range" name="frequency" min="-1" max="1" step="0.01" value="0" /></label>
-<label>Amplitude <input type="range" name="amplitude" min="0" max="2" step="0.01" value="1" /></label>
+<label>Carrier frequency <input type="range" name="carrier" min="-1" max="1" step="0.01" value="0" /></label>
+<label>Modulator frequency <input type="range" name="modulator" min="0" max="1000" step="1" value="5" /></label>
 <input type="button" name="play" value="Play" />
 <input type="button" name="stop" value="Stop" />
 <script src="js/Synth/WaveTables/sine-wave.js"></script>
 <script src="js/Synth/oscillator.js"></script>
 <script src="js/Synth/callback-generator.js"></script>
 <script src="js/AudioAPI/oscillator-java-script-node.js"></script>
-<script src="js/play-note-continuously.js"></script>
+<script src="js/amplitude-modulation.js"></script>
 </body>
 </html>
