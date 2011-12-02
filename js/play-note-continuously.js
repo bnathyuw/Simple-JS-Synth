@@ -56,7 +56,7 @@
 				oscillator: new Oscillator({
 					frequency: new CallbackGenerator({callback: getFreq}),
 					amplitude: new CallbackGenerator({callback: getAmp}),
-					waveTable: new window[getWaveform()](),
+					waveTable: new SineWave(),
 					sampleRate: context.sampleRate
 				})
 			});
