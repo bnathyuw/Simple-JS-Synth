@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<title>Play one note</title>
+<style>
+label { display: block; }
+</style>
+</head>
+<body>
+<header>
+	<h1>Play one note</h1>
+</header>
+<nav>
+<ul>
+	<li><a href=".">Home</a></li>
+	<li><a href="play-note.html">Play one note</a></li>
+</ul>
+</nav>
+<label>Frequency <input type="range" name="frequency" min="-1" max="1" step="0.01" value="0" /></label>
+<label>Amplitude <input type="range" name="amplitude" min="0" max="2" step="0.01" value="1" /></label>
+<fieldset>
+<legend>Waveform</legend>
+<label>Sine Wave<input type="radio" name="waveform" value="SineWave" checked="checked" /></label>
+<label>Square Wave<input type="radio" name="waveform" value="SquareWave" /></label>
+<label>Sawtooth Wave<input type="radio" name="waveform" value="SawtoothWave" /></label>
+<label>Triangle Wave<input type="radio" name="waveform" value="TriangleWave" /></label>
+</fieldset>
+<input type="button" name="play" value="Play" />
+<input type="button" name="stop" value="Stop" />
+<script src="js/Synth/WaveTables/wave-base.js"></script>
+<script src="js/Synth/WaveTables/loop-wave.js"></script>
+<script src="js/Synth/WaveTables/sine-wave.js"></script>
+<script src="js/Synth/WaveTables/square-wave.js"></script>
+<script src="js/Synth/WaveTables/sawtooth-wave.js"></script>
+<script src="js/Synth/WaveTables/envelope-wave.js"></script>
+<script src="js/Synth/WaveTables/triangle-wave.js"></script>
+<script src="js/Synth/WaveTables/adsr-wave.js"></script>
+<script src="js/Synth/oscillator.js"></script>
+<script src="js/Synth/frequency-centrer.js"></script>
+<script src="js/Synth/envelope-generator.js"></script>
+<script src="js/Synth/callback-generator.js"></script>
+<script src="js/Synth/oscillator-adder.js"></script>
+<script src="js/AudioAPI/oscillator-java-script-node.js"></script>
+<script src="js/play-note-continuously.js"></script>
+</body>
+</html>
