@@ -27,7 +27,7 @@
 		getModulationIndex = function () {
 			return +modulationIndexSlider.value;
 		},
-		
+
 		getModulatorAmplitude = function () {
 			return getModulator() * getModulationIndex();
 		},
