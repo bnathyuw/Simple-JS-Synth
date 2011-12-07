@@ -15,7 +15,7 @@
 		oscillatorNode,
 
 		getCarrier = function () {
-			return 440 * Math.pow(2, carrierSlider.value);
+			return 440 * Math.pow(2, +carrierSlider.value);
 		},
 
 		getModulator = function () {
@@ -44,11 +44,11 @@
 					frequency: new FrequencyCentrer({
 						wave: new Oscillator({
 							frequency: new CallbackGenerator({callback: getModulator}),
-							amplitude: 1,
+							amplitude: new CallbackGenerator({callback: getModulator}),
 							waveTable: new SineWave(),
 							sampleRate: context.sampleRate
 						}),
-						frequency: new CallbackGenerator({callback: getCarrier})
+						frequency: getCarrier()
 					}),
 					amplitude: 1,
 					waveTable: new SineWave(),
