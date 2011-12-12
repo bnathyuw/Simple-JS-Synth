@@ -1,6 +1,6 @@
 /*jslint browser: true */
 /*global webkitAudioContext: false, OscillatorJavaScriptNode: false,
-	Oscillator: false, CallbackGenerator: false, SineWave: false */
+	Oscillator: false, CallbackGenerator: false, SineWave: false, RingModulator: false */
 (function () {
 	"use strict";
 
