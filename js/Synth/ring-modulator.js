@@ -1,4 +1,6 @@
+/*global Oscillator: false, SineWave: false */
 var RingModulator = function RingModulator(spec) {
+	"use strict";
 
 	if (!this instanceof RingModulator) {
 		return new RingModulator(spec);
@@ -10,7 +12,7 @@ var RingModulator = function RingModulator(spec) {
 			amplitude: 1,
 			waveTable: new SineWave(),
 			frequency: spec.frequency,
-			sampleRate: spec.sampleRate		
+			sampleRate: spec.sampleRate
 		}),
 
 		next = function () {

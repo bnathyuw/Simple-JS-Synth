@@ -1,4 +1,8 @@
+/*global describe: false, beforeEach: false, it: false, spyOn: false, expect: false,
+	RingModulator: false, Oscillator: false, SineWave: false */
 describe("RingModulator", function () {
+	"use strict";
+
 	var carrier,
 		modulatorFrequency,
 		sampleRate,
