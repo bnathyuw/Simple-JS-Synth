@@ -1,7 +1,8 @@
 /*jslint browser: true */
 /*global webkitAudioContext: false, OscillatorJavaScriptNode: false,
 	Oscillator: false, CallbackGenerator: false, SineWave: false,
-	FrequencyCentrer: false, OscillatorAdder: false */
+	FrequencyCentrer: false, OscillatorAdder: false,
+	FrequencyModulationGenerator: false	*/
 (function () {
 	"use strict";
 
@@ -29,10 +30,6 @@
 			return +modulationIndexSlider.value;
 		},
 
-		getModulatorAmplitude = function () {
-			return getModulator() * getModulationIndex();
-		},
-
 		updateCarrier = function () {
 			carrierSpan.innerText = getCarrier();
 		},
@@ -55,20 +52,11 @@
 			}
 			oscillatorNode = new OscillatorJavaScriptNode({
 				context: context,
-				oscillator: new Oscillator({
-					frequency: new OscillatorAdder({
-						oscillators: [
-							new Oscillator({
-								frequency: new CallbackGenerator({callback: getModulator}),
-								amplitude: new CallbackGenerator({callback: getModulatorAmplitude}),
-								waveTable: new SineWave(),
-								sampleRate: context.sampleRate
-							}),
-							new CallbackGenerator({callback: getCarrier})
-						]
-					}),
-					amplitude: 1,
-					waveTable: new SineWave(),
+				oscillator: new FrequencyModulationGenerator({
+					carrierFrequency: new CallbackGenerator({callback: getCarrier}),
+					carrierAmplitude: 1,
+					modulatorFrequency: new CallbackGenerator({callback: getModulator}),
+					modulationIndex: new CallbackGenerator({callback: getModulationIndex}),
 					sampleRate: context.sampleRate
 				})
 			});
