@@ -42,11 +42,12 @@
 			amplitude: 1
 		});
 
-		osc = new Oscillator({
-			waveTable: new SineWave(),
-			sampleRate: context.sampleRate,
-			frequency: pitch,
-			amplitude: ampEnv
+		osc = new FrequencyModulationGenerator({
+			carrierFrequency: pitch,
+			carrierAmplitude: ampEnv,
+			modulatorFrequency: pitch * 2,
+			modulationIndex: ampEnv,
+			sampleRate: context.sampleRate
 		});
 
 		node = new OscillatorJavaScriptNode({
