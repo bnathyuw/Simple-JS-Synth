@@ -1,0 +1,71 @@
+﻿<!doctype html>
+<html>
+<head>
+<title>Keyboard</title>
+<style>
+#keyboard {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#keyboard li {
+	display: inline-block;
+	text-align: center;
+	vertical-align: bottom;
+}
+li[id*="-natural-"] {
+	background: white;
+	border: 1px solid black;
+	height: 200px;
+	width: 50px;
+}
+li[id*="-sharp-"], li[id*="-flat-"] {
+	background: black;
+	color: white;
+	width: 30px;
+	height: 160px;
+	position: absolute;
+	margin-left: -17px;
+}
+</style>
+</head>
+<body>
+<header>
+	<h1>Keyboard</h1>
+</header>
+<nav>
+<ul>
+	<li><a href=".">Home</a></li>
+	<li><a href="play-note.html">Play one note</a></li>
+	<li><a href="play-note-continuously.html">Play note continuously</a></li>
+	<li><a href="ring-modulation.html">Ring modulation</a></li>
+	<li><a href="amplitude-modulation.html">Amplitude modulation</a></li>
+	<li><a href="frequency-modulation.html">Frequency modulation</a></li>
+	<li><a href="keyboard.html">Keyboard</a></li>
+</ul>
+</nav>
+<ul id="keyboard">
+	<li id="c-natural-prime">cʹ</li>
+	<li id="c-sharp-prime">c♯ʹ</li>
+	<li id="d-natural-prime">dʹ</li>
+	<li id="e-flat-prime">e♭ʹ</li>
+	<li id="e-natural-prime">eʹ</li>
+	<li id="f-natural-prime">fʹ</li>
+	<li id="f-sharp-prime">f♯ʹ</li>
+	<li id="g-natural-prime">gʹ</li>
+	<li id="a-flat-prime">a♭ʹ</li>
+	<li id="a-natural-prime">aʹ</li>
+	<li id="b-flat-prime">b♭ʹ</li>
+	<li id="b-natural-prime">bʹ</li>
+	<li id="c-natural-prime-prime">cʹʹ</li>
+</ul>
+<script src="js/Synth/WaveTables/wave-base.js"></script>
+<script src="js/Synth/WaveTables/envelope-wave.js"></script>
+<script src="js/Synth/WaveTables/adsr-wave.js"></script>
+<script src="js/Synth/WaveTables/sine-wave.js"></script>
+<script src="js/Synth/envelope-generator.js"></script>
+<script src="js/Synth/oscillator.js"></script>
+<script src="js/AudioAPI/oscillator-java-script-node.js"></script>
+<script src="js/keyboard.js"></script>
+</body>
+</html>
