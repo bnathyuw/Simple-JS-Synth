@@ -1,4 +1,3 @@
-/*global LoopWave: false */
 var SineWave = function SineWave() {
 	"use strict";
 

@@ -1,5 +1,4 @@
-/*global LoopWave: false,
-	EnvelopeWave: false */
+/*global EnvelopeWave: false */
 var ADSRWave = function (spec) {
 	"use strict";
 

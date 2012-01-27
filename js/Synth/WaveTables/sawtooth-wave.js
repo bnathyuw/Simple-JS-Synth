@@ -1,4 +1,3 @@
-/*global LoopWave: false */
 var SawtoothWave = function SawtoothWave() {
 	"use strict";
 
