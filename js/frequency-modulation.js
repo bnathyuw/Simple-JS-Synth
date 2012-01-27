@@ -1,7 +1,5 @@
 /*jslint browser: true */
 /*global webkitAudioContext: false, OscillatorJavaScriptNode: false,
-	Oscillator: false, CallbackGenerator: false, SineWave: false,
-	FrequencyCentrer: false, OscillatorAdder: false,
 	FrequencyModulationGenerator: false	*/
 (function () {
 	"use strict";
@@ -53,10 +51,9 @@
 			oscillatorNode = new OscillatorJavaScriptNode({
 				context: context,
 				oscillator: new FrequencyModulationGenerator({
-					carrierFrequency: new CallbackGenerator({callback: getCarrier}),
-					carrierAmplitude: 1,
-					modulatorFrequency: new CallbackGenerator({callback: getModulator}),
-					modulationIndex: new CallbackGenerator({callback: getModulationIndex}),
+					carrierFrequency: getCarrier,
+					modulatorFrequency: getModulator,
+					modulationIndex: getModulationIndex,
 					sampleRate: context.sampleRate
 				})
 			});

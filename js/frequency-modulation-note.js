@@ -1,6 +1,6 @@
 /*jslint browser: true */
 /*global webkitAudioContext: false, OscillatorJavaScriptNode: false,
-	Oscillator: false, CallbackGenerator: false, SineWave: false,
+	Oscillator: false, SineWave: false,
 	FrequencyCentrer: false, OscillatorAdder: false,
 	FrequencyModulationGenerator: false, EnvelopeGenerator: false,
 	ADSRWave: false */
@@ -54,7 +54,7 @@
 			oscillatorNode = new OscillatorJavaScriptNode({
 				context: context,
 				oscillator: new FrequencyModulationGenerator({
-					carrierFrequency: new CallbackGenerator({callback: getCarrier}),
+					carrierFrequency: getCarrier,
 					carrierAmplitude: new EnvelopeGenerator({
 						waveTable: new ADSRWave({
 							attackTime: 0.2,
@@ -77,7 +77,7 @@
 						sampleRate: context.sampleRate,
 						amplitude: 1
 					}),
-					modulationIndex: new CallbackGenerator({callback: getModulationIndex}),
+					modulationIndex: getModulationIndex,
 					sampleRate: context.sampleRate
 				})
 			});

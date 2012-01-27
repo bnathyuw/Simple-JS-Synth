@@ -3,26 +3,30 @@
 describe("RingModulator", function () {
 	"use strict";
 
-	var carrier,
+	var carrierFrequency,
 		modulatorFrequency,
 		sampleRate,
 		ringModulator,
+		carrierReference,
 		modulatorReference;
 
 	beforeEach(function () {
-		carrier = {
-			next: function () {
-				return 0.3;
-			}
-		};
+		carrierFrequency = 0.3;
 
 		modulatorFrequency = 660;
 
 		sampleRate = 44800;
 
 		ringModulator = new RingModulator({
-			carrier: carrier,
-			frequency: modulatorFrequency,
+			carrierFrequency: carrierFrequency,
+			modulatorFrequency: modulatorFrequency,
+			sampleRate: sampleRate
+		});
+
+		carrierReference = new Oscillator({
+			amplitude: 1,
+			waveTable: new SineWave(),
+			frequency: carrierFrequency,
 			sampleRate: sampleRate
 		});
 
@@ -34,18 +38,10 @@ describe("RingModulator", function () {
 		});
 	});
 
-	it("should call carrier.next", function () {
-		var spy = spyOn(carrier, "next").andCallThrough();
-
-		ringModulator.next();
-
-		expect(spy).toHaveBeenCalled();
-	});
-
 	it("should return the value from carrier multiplied by the correct value from the modulator", function () {
-		expect(ringModulator.next()).toEqual(0.3 * modulatorReference.next());
-		expect(ringModulator.next()).toEqual(0.3 * modulatorReference.next());
-		expect(ringModulator.next()).toEqual(0.3 * modulatorReference.next());
-		expect(ringModulator.next()).toEqual(0.3 * modulatorReference.next());
+		expect(ringModulator.next()).toEqual(modulatorReference.next() * carrierReference.next());
+		expect(ringModulator.next()).toEqual(modulatorReference.next() * carrierReference.next());
+		expect(ringModulator.next()).toEqual(modulatorReference.next() * carrierReference.next());
+		expect(ringModulator.next()).toEqual(modulatorReference.next() * carrierReference.next());
 	});
 });

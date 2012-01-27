@@ -41,13 +41,8 @@
 			oscillatorNode = new OscillatorJavaScriptNode({
 				context: context,
 				oscillator: new RingModulator({
-					carrier: new Oscillator({
-						amplitude: 1,
-						frequency: new CallbackGenerator({callback: getCarrier}),
-						waveTable: new SineWave(),
-						sampleRate: context.sampleRate
-					}),
-					frequency: new CallbackGenerator({callback: getModulator}),
+					carrierFrequency: getCarrier,
+					modulatorFrequency: getModulator,
 					sampleRate: context.sampleRate
 				})
 			});

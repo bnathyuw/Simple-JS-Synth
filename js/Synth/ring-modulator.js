@@ -6,12 +6,17 @@ var RingModulator = function RingModulator(spec) {
 		return new RingModulator(spec);
 	}
 
-	var carrier = spec.carrier,
+	var carrier = new Oscillator({
+			amplitude: 1,
+			waveTable: new SineWave(),
+			frequency: spec.carrierFrequency,
+			sampleRate: spec.sampleRate
+		}),
 
 		modulator = new Oscillator({
 			amplitude: 1,
 			waveTable: new SineWave(),
-			frequency: spec.frequency,
+			frequency: spec.modulatorFrequency,
 			sampleRate: spec.sampleRate
 		}),
 

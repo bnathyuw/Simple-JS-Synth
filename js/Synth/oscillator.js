@@ -1,15 +1,18 @@
 var Oscillator = function Oscillator(spec) {
 	"use strict";
 	var currentIndex = 0,
+		isFunction = function (object) {
+			return !!(object && object.constructor && object.call && object.apply);
+		},
 		waveTable = spec.waveTable,
 		frequency = spec.frequency.next ? spec.frequency : {
-			next: function () {
+			next: isFunction(spec.frequency) ? spec.frequency : function () {
 				return spec.frequency;
 			}
 		},
 		sampleRate = spec.sampleRate,
 		amplitude = spec.amplitude.next ? spec.amplitude : {
-			next: function () {
+			next: isFunction(spec.amplitude) ? spec.amplitude : function () {
 				return spec.amplitude;
 			}
 		},
