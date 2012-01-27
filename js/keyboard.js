@@ -1,6 +1,6 @@
 /*global document: false, alert: false,
 	webkitAudioContext: false , ADSRWave: false, EnvelopeGenerator: false, Oscillator: false,
-	SineWave: false, OscillatorJavaScriptNode: false*/
+	SineWave: false, OscillatorJavaScriptNode: false, FrequencyModulationGenerator: false */
 (function () {
 	"use strict";
 

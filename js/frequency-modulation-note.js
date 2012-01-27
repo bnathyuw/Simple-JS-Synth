@@ -2,7 +2,8 @@
 /*global webkitAudioContext: false, OscillatorJavaScriptNode: false,
 	Oscillator: false, CallbackGenerator: false, SineWave: false,
 	FrequencyCentrer: false, OscillatorAdder: false,
-	FrequencyModulationGenerator: false	*/
+	FrequencyModulationGenerator: false, EnvelopeGenerator: false,
+	ADSRWave: false */
 (function () {
 	"use strict";
 

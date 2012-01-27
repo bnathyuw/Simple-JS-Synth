@@ -1,35 +1,30 @@
-/*global EnvelopeWave: false */
 var ADSRWave = function (spec) {
 	"use strict";
 
-	var table = [],
-		attackTime = spec.attackTime,
-		decayTime = spec.decayTime,
+	var totalTime = spec.attackTime + spec.decayTime + spec.sustainTime + spec.releaseTime,
+		attackTime = spec.attackTime / totalTime,
+		decayTime = spec.decayTime / totalTime,
 		sustainLevel = spec.sustainLevel,
-		sustainTime = spec.sustainTime,
-		releaseTime = spec.releaseTime,
-		i,
-		ADSRWave = function ADSRWave() {};
+		sustainTime = spec.sustainTime / totalTime,
+		releaseTime = spec.releaseTime / totalTime;
 
-	for (i = 0; i < attackTime; i = i + 1) {
-		table.push(i / attackTime);
-	}
+	this.getValue = function (index) {
+		if (index < attackTime) {
+			return index / attackTime;
+		}
 
-	for (i = 0; i < decayTime; i = i + 1) {
-		table.push(1 - (1 - sustainLevel) * i / decayTime);
-	}
+		if (index < attackTime + decayTime) {
+			return 1 - (1 - sustainLevel) * (index - attackTime) / decayTime;
+		}
 
-	for (i = 0; i < sustainTime; i = i + 1) {
-		table.push(sustainLevel);
-	}
+		if (index < attackTime + decayTime + sustainTime) {
+			return sustainLevel;
+		}
 
-	for (i = 0; i < releaseTime; i = i + 1) {
-		table.push(sustainLevel - sustainLevel * i / releaseTime);
-	}
+		if (index < 1) {
+			return sustainLevel - sustainLevel * (index - attackTime - decayTime - sustainTime) / releaseTime;
+		}
 
-	table.push(0);
-
-	ADSRWave.prototype = new EnvelopeWave(table);
-
-	return new ADSRWave();
+		return 0;
+	};
 };
