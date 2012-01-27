@@ -5,8 +5,8 @@ describe("CallbackGenerator", function () {
 	it("should call the callback", function () {
 		var callback = function () {},
 			spec = {callback: callback},
-			callbackGenerator = new CallbackGenerator(spec),
-			spy = spyOn(spec, "callback");
+			spy = spyOn(spec, "callback"),
+			callbackGenerator = new CallbackGenerator(spec);
 
 		callbackGenerator.next();
 

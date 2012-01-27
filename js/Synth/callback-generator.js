@@ -1,13 +1,9 @@
-var CallbackGenerator = (function () {
+var CallbackGenerator = function CallbackGenerator(spec) {
 	"use strict";
+	var callback = spec.callback,
+		next = function () {
+			return callback();
+		};
 
-	var CallbackGenerator = function CallbackGenerator(spec) {
-		var next = function () {
-				return spec.callback();
-			};
-
-		this.next = next;
-	};
-
-	return CallbackGenerator;
-}());
+	this.next = next;
+};
