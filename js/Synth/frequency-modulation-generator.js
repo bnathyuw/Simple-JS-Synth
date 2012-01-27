@@ -33,18 +33,20 @@ var FrequencyModulationGenerator = function FrequencyModulationGenerator(spec) {
 			}
 		},
 		sampleRate = spec.sampleRate,
+		frequencyOscillator = new Oscillator({
+			frequency: modulatorFrequency,
+			amplitude: modulatorAmplitude,
+			waveTable: new SineWave(),
+			sampleRate: sampleRate
+		}),
+		addedFrequencies = new OscillatorAdder({
+			oscillators: [
+				frequencyOscillator,
+				carrierFrequency
+			]
+		}),
 		oscillator = new Oscillator({
-			frequency: new OscillatorAdder({
-				oscillators: [
-					new Oscillator({
-						frequency: modulatorFrequency,
-						amplitude: modulatorAmplitude,
-						waveTable: new SineWave(),
-						sampleRate: sampleRate
-					}),
-					carrierFrequency
-				]
-			}),
+			frequency: addedFrequencies,
 			amplitude: carrierAmplitude,
 			waveTable: new SineWave(),
 			sampleRate: sampleRate
