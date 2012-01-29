@@ -3,7 +3,8 @@ var EnvelopeGenerator = function EnvelopeGenerator(spec) {
 	var currentIndex = 0,
 		waveTable = spec.waveTable,
 		duration = spec.duration,
-		sampleRate = spec.sampleRate,
+		context = spec.context,
+		sampleRate = context.sampleRate,
 		amplitude = spec.amplitude,
 		next = function () {
 			if (currentIndex >= 1) {
@@ -17,3 +18,8 @@ var EnvelopeGenerator = function EnvelopeGenerator(spec) {
 
 	this.next = next;
 };
+
+SynthAudioContext.prototype.createEnvelopeGenerator = function(spec) {
+	spec.context = this;
+	return new EnvelopeGenerator(spec);
+}

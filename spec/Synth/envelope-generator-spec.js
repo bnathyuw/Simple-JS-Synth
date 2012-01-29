@@ -6,7 +6,8 @@ describe("EnvelopeGenerator", function () {
 		duration,
 		sampleRate,
 		amplitude,
-		oscillator;
+		oscillator,
+		context;
 
 	describe("fixed frequency and amplitude", function () {
 		beforeEach(function () {
@@ -18,11 +19,14 @@ describe("EnvelopeGenerator", function () {
 			duration = 2;
 			sampleRate = 2;
 			amplitude = 0.75;
+			context = {
+				sampleRate: sampleRate
+			};
 			oscillator = new EnvelopeGenerator({
 				waveTable: waveTable,
 				duration: duration,
-				sampleRate: sampleRate,
-				amplitude: amplitude
+				amplitude: amplitude,
+				context: context
 			});
 		});
 

@@ -28,3 +28,7 @@ var ADSRWave = function (spec) {
 		return 0;
 	};
 };
+
+SynthAudioContext.prototype.createADSRWave = function(spec) {
+	return new ADSRWave(spec);
+}

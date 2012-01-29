@@ -12,8 +12,7 @@
 		carrierSpan = document.createElement("span"),
 		modulatorSpan = document.createElement("span"),
 		modulationIndexSpan = document.createElement("span"),
-		AC = webkitAudioContext,
-		context = new AC(),
+		context = new SynthAudioContext(),
 		oscillatorNode,
 
 		getCarrier = function () {
@@ -48,14 +47,10 @@
 			if (oscillatorNode) {
 				stop();
 			}
-			oscillatorNode = new OscillatorJavaScriptNode({
-				context: context,
-				oscillator: new FrequencyModulationGenerator({
-					carrierFrequency: getCarrier,
-					modulatorFrequency: getModulator,
-					modulationIndex: getModulationIndex,
-					sampleRate: context.sampleRate
-				})
+			oscillatorNode = context.createFrequencyModulationGeneratorNode({
+				carrierFrequency: getCarrier,
+				modulatorFrequency: getModulator,
+				modulationIndex: getModulationIndex
 			});
 			oscillatorNode.connect(context.destination);
 		};

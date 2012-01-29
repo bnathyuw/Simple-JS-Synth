@@ -50,12 +50,10 @@
 			if (oscillatorNode) {
 				stop();
 			}
-			oscillatorNode = context.createOscillatorJavaScriptNode({
-				oscillator: context.createOscillator({
-					frequency: getFreq(),
-					amplitude: getAmp(),
-					waveTable: new window[getWaveform()]()
-				})
+			oscillatorNode = context.createOscillatorNode({
+				frequency: getFreq(),
+				amplitude: getAmp(),
+				waveTable: new window[getWaveform()]()
 			});
 			oscillatorNode.connect(context.destination);
 		};

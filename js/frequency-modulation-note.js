@@ -15,8 +15,7 @@
 		carrierSpan = document.createElement("span"),
 		modulatorSpan = document.createElement("span"),
 		modulationIndexSpan = document.createElement("span"),
-		AC = webkitAudioContext,
-		context = new AC(),
+		context = new SynthAudioContext(),
 		oscillatorNode,
 
 		getCarrier = function () {
@@ -51,35 +50,30 @@
 			if (oscillatorNode) {
 				stop();
 			}
-			oscillatorNode = new OscillatorJavaScriptNode({
-				context: context,
-				oscillator: new FrequencyModulationGenerator({
-					carrierFrequency: getCarrier,
-					carrierAmplitude: new EnvelopeGenerator({
-						waveTable: new ADSRWave({
-							attackTime: 0.2,
-							decayTime: 0.2,
-							sustainLevel: 0.2,
-							sustainTime: 0.4,
-							releaseTime: 0.2
-						}),
-						duration: 2,
-						sampleRate: context.sampleRate,
-						amplitude: 1
+			oscillatorNode = context.createFrequencyModulationGeneratorNode({
+				carrierFrequency: getCarrier,
+				carrierAmplitude: context.createEnvelopeGenerator({
+					waveTable: context.createADSRWave({
+						attackTime: 0.2,
+						decayTime: 0.2,
+						sustainLevel: 0.2,
+						sustainTime: 0.4,
+						releaseTime: 0.2
 					}),
-					modulatorFrequency: new EnvelopeGenerator({
-						waveTable: {
-							getValue: function (index) {
-								return 460 - index * 10 - Math.sin(index * Math.PI) * 10;
-							}
-						},
-						duration: 2,
-						sampleRate: context.sampleRate,
-						amplitude: 1
-					}),
-					modulationIndex: getModulationIndex,
-					sampleRate: context.sampleRate
-				})
+					duration: 2,
+					amplitude: 1
+				}),
+				modulatorFrequency: context.createEnvelopeGenerator({
+					waveTable: {
+						getValue: function (index) {
+							return 460 - index * 10 - Math.sin(index * Math.PI) * 10;
+						}
+					},
+					duration: 2,
+					sampleRate: context.sampleRate,
+					amplitude: 1
+				}),
+				modulationIndex: getModulationIndex
 			});
 			oscillatorNode.connect(context.destination);
 		};

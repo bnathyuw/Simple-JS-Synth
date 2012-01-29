@@ -9,3 +9,7 @@ var FrequencyCentrer = function FrequencyCentrer(spec) {
 
 	this.next = next;
 };
+
+SynthAudioContext.prototype.createFrequencyCentrer = function(spec) {
+	return new FrequencyCentrer(spec);
+}

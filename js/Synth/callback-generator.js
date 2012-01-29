@@ -7,3 +7,7 @@ var CallbackGenerator = function CallbackGenerator(spec) {
 
 	this.next = next;
 };
+
+SynthAudioContext.prototype.createCallbackGenerator = function(spec) {
+	return new CallbackGenerator(spec);
+}

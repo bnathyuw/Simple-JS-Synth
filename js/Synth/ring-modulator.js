@@ -6,18 +6,18 @@ var RingModulator = function RingModulator(spec) {
 		return new RingModulator(spec);
 	}
 
-	var carrier = new Oscillator({
+	var context = spec.context,
+
+		carrier = context.createOscillator({
 			amplitude: 1,
-			waveTable: new SineWave(),
-			frequency: spec.carrierFrequency,
-			sampleRate: spec.sampleRate
+			waveTable: context.createSineWave(),
+			frequency: spec.carrierFrequency
 		}),
 
-		modulator = new Oscillator({
+		modulator = context.createOscillator({
 			amplitude: 1,
-			waveTable: new SineWave(),
-			frequency: spec.modulatorFrequency,
-			sampleRate: spec.sampleRate
+			waveTable: context.createSineWave(),
+			frequency: spec.modulatorFrequency
 		}),
 
 		next = function () {
@@ -26,3 +26,14 @@ var RingModulator = function RingModulator(spec) {
 
 	this.next = next;
 };
+
+SynthAudioContext.prototype.createRingModulator = function(spec) {
+	spec.context = this;
+	return new RingModulator(spec);
+}
+
+SynthAudioContext.prototype.createRingModulatorNode = function(spec) {
+	return this.createOscillatorJavaScriptNode({
+		oscillator: this.createRingModulator(spec)
+	});	
+}

@@ -8,13 +8,12 @@ var AmplitudeModulator = function AmplitudeModulator(spec) {
 	}
 
 	var carrier = spec.carrier,
-
-		modulator = new FrequencyCentrer({
-			wave: new Oscillator({
+		context = spec.context,
+		modulator = context.createFrequencyCentrer({
+			wave: context.createOscillator({
 				amplitude: 0.5,
-				waveTable: new SineWave(),
-				frequency: spec.frequency,
-				sampleRate: spec.sampleRate
+				waveTable: context.createSineWave(),
+				frequency: spec.frequency
 			}),
 			frequency: 0.5
 		}),
@@ -24,4 +23,15 @@ var AmplitudeModulator = function AmplitudeModulator(spec) {
 		};
 
 	this.next = next;
+};
+
+SynthAudioContext.prototype.createAmplitudeModulator = function(spec) {
+	spec.context = this;
+	return new AmplitudeModulator(spec);
+};
+
+SynthAudioContext.prototype.createAmplitudeModulatorNode = function(spec) {
+	return this.createOscillatorJavaScriptNode({
+		oscillator: this.createAmplitudeModulator(spec)
+	});
 };

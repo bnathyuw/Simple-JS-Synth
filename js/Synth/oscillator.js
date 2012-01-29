@@ -10,7 +10,8 @@ var Oscillator = function Oscillator(spec) {
 				return spec.frequency;
 			}
 		},
-		sampleRate = spec.sampleRate,
+		context = spec.context,
+		sampleRate = context.sampleRate,
 		amplitude = spec.amplitude.next ? spec.amplitude : {
 			next: isFunction(spec.amplitude) ? spec.amplitude : function () {
 				return spec.amplitude;
@@ -26,6 +27,12 @@ var Oscillator = function Oscillator(spec) {
 };
 
 SynthAudioContext.prototype.createOscillator = function (spec) {
-	spec.sampleRate = this.sampleRate;
+	spec.context = this;
 	return new Oscillator(spec);	
+}
+
+SynthAudioContext.prototype.createOscillatorNode = function (spec) {
+	return this.createOscillatorJavaScriptNode({
+		oscillator: this.createOscillator(spec)
+	});
 }

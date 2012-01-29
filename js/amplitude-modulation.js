@@ -11,8 +11,7 @@
 		stopButton = document.getElementsByName("stop")[0],
 		carrierSpan = document.createElement("span"),
 		modulatorSpan = document.createElement("span"),
-		AC = webkitAudioContext,
-		context = new AC(),
+		context = new SynthAudioContext(),
 		oscillatorNode,
 
 		getCarrier = function () {
@@ -39,18 +38,13 @@
 			if (oscillatorNode) {
 				stop();
 			}
-			oscillatorNode = new OscillatorJavaScriptNode({
-				context: context,
-				oscillator: new AmplitudeModulator({
-					carrier: new Oscillator({
-						amplitude: 1,
-						frequency: new CallbackGenerator({callback: getCarrier}),
-						waveTable: new SineWave(),
-						sampleRate: context.sampleRate
-					}),
-					frequency: new CallbackGenerator({callback: getModulator}),
-					sampleRate: context.sampleRate
-				})
+			oscillatorNode = context.createAmplitudeModulatorNode({
+				carrier: context.createOscillator({
+					amplitude: 1,
+					frequency: getCarrier,
+					waveTable: context.createSineWave()
+				}),
+				frequency: getModulator
 			});
 			oscillatorNode.connect(context.destination);
 		};

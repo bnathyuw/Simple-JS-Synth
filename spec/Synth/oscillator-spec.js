@@ -21,7 +21,9 @@ describe("Oscillator", function () {
 			oscillator = new Oscillator({
 				waveTable: waveTable,
 				frequency: frequency,
-				sampleRate: sampleRate,
+				context: {
+					sampleRate: sampleRate
+				},
 				amplitude: amplitude
 			});
 		});
@@ -63,7 +65,9 @@ describe("Oscillator", function () {
 			oscillator = new Oscillator({
 				waveTable: waveTable,
 				frequency: frequency,
-				sampleRate: sampleRate,
+				context: {
+					sampleRate: sampleRate,
+				},
 				amplitude: amplitude
 			});
 		});
@@ -80,7 +84,7 @@ describe("Oscillator", function () {
 		});
 	});
 
-	describe("env get provides frequency", function () {
+	describe("env gen provides frequency", function () {
 		beforeEach(function () {
 			waveTable = {
 				getValue: function () {
@@ -97,7 +101,9 @@ describe("Oscillator", function () {
 			oscillator = new Oscillator({
 				waveTable: waveTable,
 				frequency: frequency,
-				sampleRate: sampleRate,
+				context: {
+					sampleRate: sampleRate,
+				},
 				amplitude: amplitude
 			});
 		});

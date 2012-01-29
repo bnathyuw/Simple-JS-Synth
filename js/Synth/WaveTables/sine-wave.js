@@ -7,3 +7,7 @@ var SineWave = function SineWave() {
 
 	this.getValue = getValue;
 };
+
+SynthAudioContext.prototype.createSineWave = function() {
+	return new SineWave();
+}

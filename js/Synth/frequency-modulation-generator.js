@@ -35,28 +35,38 @@ var FrequencyModulationGenerator = function FrequencyModulationGenerator(spec) {
 				return modulatorFrequency.next() * modulationIndex.next();
 			}
 		},
-		sampleRate = spec.sampleRate,
-		frequencyOscillator = new Oscillator({
+		context = spec.context,
+		sampleRate = context.sampleRate,
+		frequencyOscillator = context.createOscillator({
 			frequency: modulatorFrequency,
 			amplitude: modulatorAmplitude,
-			waveTable: new SineWave(),
-			sampleRate: sampleRate
+			waveTable: context.createSineWave()
 		}),
-		addedFrequencies = new OscillatorAdder({
+		addedFrequencies = context.createOscillatorAdder({
 			oscillators: [
 				frequencyOscillator,
 				carrierFrequency
 			]
 		}),
-		oscillator = new Oscillator({
+		oscillator = context.createOscillator({
 			frequency: addedFrequencies,
 			amplitude: carrierAmplitude,
-			waveTable: new SineWave(),
-			sampleRate: sampleRate
+			waveTable: context.createSineWave()
 		}),
 		next = function () {
 			return oscillator.next();
 		};
 
 	this.next = next;
+};
+
+SynthAudioContext.prototype.createFrequencyModulationGenerator = function(spec) {
+	spec.context = this;
+	return new FrequencyModulationGenerator(spec);
+};
+
+SynthAudioContext.prototype.createFrequencyModulationGeneratorNode = function(spec) {
+	return this.createOscillatorJavaScriptNode({
+		oscillator: this.createFrequencyModulationGenerator(spec)
+	});
 };

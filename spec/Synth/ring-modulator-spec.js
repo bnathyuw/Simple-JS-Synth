@@ -8,7 +8,8 @@ describe("RingModulator", function () {
 		sampleRate,
 		ringModulator,
 		carrierReference,
-		modulatorReference;
+		modulatorReference,
+		context;
 
 	beforeEach(function () {
 		carrierFrequency = 0.3;
@@ -16,25 +17,33 @@ describe("RingModulator", function () {
 		modulatorFrequency = 660;
 
 		sampleRate = 44800;
+		
+		context = {
+			sampleRate: sampleRate,
+			createOscillator: function(spec) {
+				spec.context = context;
+				return new Oscillator(spec);
+			}
+		}
 
 		ringModulator = new RingModulator({
 			carrierFrequency: carrierFrequency,
 			modulatorFrequency: modulatorFrequency,
-			sampleRate: sampleRate
+			context: context
 		});
 
 		carrierReference = new Oscillator({
 			amplitude: 1,
 			waveTable: new SineWave(),
 			frequency: carrierFrequency,
-			sampleRate: sampleRate
+			context: context
 		});
 
 		modulatorReference = new Oscillator({
 			amplitude: 1,
 			waveTable: new SineWave(),
 			frequency: modulatorFrequency,
-			sampleRate: sampleRate
+			context: context
 		});
 	});
 

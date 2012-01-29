@@ -15,3 +15,7 @@ var OscillatorAdder = function OscillatorAdder(spec) {
 
 	this.next = next;
 };
+
+SynthAudioContext.prototype.createOscillatorAdder = function(spec) {
+	return new OscillatorAdder(spec);
+}

@@ -7,7 +7,8 @@ describe("AmplitudeModulator", function () {
 		modulatorFrequency,
 		sampleRate,
 		amplitudeModulator,
-		modulatorReference;
+		modulatorReference,
+		context;
 
 	beforeEach(function () {
 		carrier = {
@@ -19,18 +20,32 @@ describe("AmplitudeModulator", function () {
 		modulatorFrequency = 660;
 
 		sampleRate = 44800;
+		
+		context = {
+			sampleRate: sampleRate,
+			createOscillator: function(spec) {
+				spec.context = context;
+				return new Oscillator(spec);
+			},
+			createSineWave: function() {
+				return new SineWave();
+			},
+			createFrequencyCentrer: function(spec) {
+				return new FrequencyCentrer(spec);
+			}
+		};
 
 		amplitudeModulator = new AmplitudeModulator({
 			carrier: carrier,
 			frequency: modulatorFrequency,
-			sampleRate: sampleRate
+			context: context
 		});
 
 		modulatorReference = new Oscillator({
 			amplitude: 1,
 			waveTable: new SineWave(),
 			frequency: modulatorFrequency,
-			sampleRate: sampleRate
+			context: context
 		});
 	});
 

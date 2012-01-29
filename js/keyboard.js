@@ -12,12 +12,9 @@
 		a,
 		semitone,
 		playPitch,
-		AC,
 		context;
 
-	AC = webkitAudioContext;
-
-	context = new AC();
+	context = new SynthAudioContext();
 
 	keys = document.querySelectorAll("#keyboard li");
 
@@ -27,7 +24,7 @@
 			osc,
 			node;
 
-		ampWave = new ADSRWave({
+		ampWave = context.createADSRWave({
 			attackTime: 0.2,
 			decayTime: 2,
 			sustainLevel: 0.5,
@@ -35,24 +32,17 @@
 			releaseTime: 2
 		});
 
-		ampEnv = new EnvelopeGenerator({
+		ampEnv = context.createEnvelopeGenerator({
 			waveTable: ampWave,
 			duration: 0.5,
-			sampleRate: context.sampleRate,
 			amplitude: 1
 		});
 
-		osc = new FrequencyModulationGenerator({
+		node = context.createFrequencyModulationGeneratorNode({
 			carrierFrequency: pitch,
 			carrierAmplitude: ampEnv,
 			modulatorFrequency: pitch * 2,
 			modulationIndex: ampEnv,
-			sampleRate: context.sampleRate
-		});
-
-		node = new OscillatorJavaScriptNode({
-			context: context,
-			oscillator: osc
 		});
 
 		node.connect(context.destination);
