@@ -10,8 +10,7 @@
 		stopButton = document.getElementsByName("stop")[0],
 		freqSpan = document.createElement("span"),
 		ampSpan = document.createElement("span"),
-		AC = webkitAudioContext,
-		context = new AC(),
+		context = new SynthAudioContext(),
 		oscillatorNode,
 
 		getFreq = function () {
@@ -51,13 +50,11 @@
 			if (oscillatorNode) {
 				stop();
 			}
-			oscillatorNode = new OscillatorJavaScriptNode({
-				context: context,
-				oscillator: new Oscillator({
+			oscillatorNode = context.createOscillatorJavaScriptNode({
+				oscillator: context.createOscillator({
 					frequency: getFreq(),
 					amplitude: getAmp(),
-					waveTable: new window[getWaveform()](),
-					sampleRate: context.sampleRate
+					waveTable: new window[getWaveform()]()
 				})
 			});
 			oscillatorNode.connect(context.destination);

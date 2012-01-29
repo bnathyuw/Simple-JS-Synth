@@ -24,3 +24,8 @@ var Oscillator = function Oscillator(spec) {
 
 	this.next = next;
 };
+
+SynthAudioContext.prototype.createOscillator = function (spec) {
+	spec.sampleRate = this.sampleRate;
+	return new Oscillator(spec);	
+}

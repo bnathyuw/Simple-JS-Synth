@@ -26,3 +26,8 @@ var OscillatorJavaScriptNode = function OscillatorJavaScriptNode(spec) {
 
 	return jsNode;
 };
+
+SynthAudioContext.prototype.createOscillatorJavaScriptNode = function (spec) {
+	spec.context = this;
+	return new OscillatorJavaScriptNode(spec);	
+}
