@@ -23,6 +23,9 @@ describe("RingModulator", function () {
 			createOscillator: function(spec) {
 				spec.context = context;
 				return new Oscillator(spec);
+			},
+			createSineWave: function(spec) {
+				return new SineWave();
 			}
 		}
 
