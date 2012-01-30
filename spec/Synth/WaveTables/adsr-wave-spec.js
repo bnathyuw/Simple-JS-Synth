@@ -1,5 +1,4 @@
 /*global describe: false, it: false, expect: false, ADSRWave: false */
-
 describe("ADSRWave", function () {
 	"use strict";
 
@@ -8,7 +7,7 @@ describe("ADSRWave", function () {
 		sustainLevel = 0.75,
 		sustainTime = 3,
 		releaseTime = 3,
-		adsrWave = new ADSRWave({
+		adsrWave = new SynthAudioContext().createADSRWave({
 			attackTime: attackTime,
 			decayTime: decayTime,
 			sustainLevel: sustainLevel,
@@ -19,7 +18,7 @@ describe("ADSRWave", function () {
 		i,
 		runTest = function (i) {
 			it("should return correct value for index " + i, function () {
-				var result = adsrWave.getValue(i / 10);
+				var result = adsrWave(i / 10);
 				expect(result.toFixed(4)).toEqual(expectedValues[i].toFixed(4));
 			});
 		};

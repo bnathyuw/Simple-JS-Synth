@@ -53,7 +53,7 @@
 			oscillatorNode = context.createOscillatorNode({
 				frequency: getFreq(),
 				amplitude: getAmp(),
-				waveTable: new window[getWaveform()]()
+				waveTable: context[getWaveform()]
 			});
 			oscillatorNode.connect(context.destination);
 		};

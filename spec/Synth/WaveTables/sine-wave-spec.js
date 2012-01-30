@@ -3,8 +3,7 @@
 describe("SineWave", function () {
 	"use strict";
 
-	var audioContext = new SynthAudioContext(),
-		sineWave = audioContext.sineWave;
+	var sineWave = new SynthAudioContext().sineWave;
 
 	it("should return 0 at position 0", function () {
 		var result = sineWave(0);
