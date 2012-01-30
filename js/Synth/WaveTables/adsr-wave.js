@@ -4,26 +4,25 @@ SynthAudioContext.prototype.createADSRWave = function(spec) {
 		decayTime = spec.decayTime / totalTime,
 		sustainLevel = spec.sustainLevel,
 		sustainTime = spec.sustainTime / totalTime,
-		releaseTime = spec.releaseTime / totalTime,
-		adsrWave = function (index) {
-			if (index < attackTime) {
-				return index / attackTime;
-			}
+		releaseTime = spec.releaseTime / totalTime;
 
-			if (index < attackTime + decayTime) {
-				return 1 - (1 - sustainLevel) * (index - attackTime) / decayTime;
-			}
+	return adsrWave = function (index) {
+		if (index < attackTime) {
+			return index / attackTime;
+		}
 
-			if (index < attackTime + decayTime + sustainTime) {
-				return sustainLevel;
-			}
+		if (index < attackTime + decayTime) {
+			return 1 - (1 - sustainLevel) * (index - attackTime) / decayTime;
+		}
 
-			if (index < 1) {
-				return sustainLevel - sustainLevel * (index - attackTime - decayTime - sustainTime) / releaseTime;
-			}
+		if (index < attackTime + decayTime + sustainTime) {
+			return sustainLevel;
+		}
 
-			return 0;
-		};
-		
-		return adsrWave;
-}
+		if (index < 1) {
+			return sustainLevel - sustainLevel * (index - attackTime - decayTime - sustainTime) / releaseTime;
+		}
+
+		return 0;
+	};
+};
