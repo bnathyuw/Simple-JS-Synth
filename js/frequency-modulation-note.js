@@ -64,11 +64,7 @@
 					amplitude: 1
 				}),
 				modulatorFrequency: context.createEnvelopeGenerator({
-					waveTable: {
-						getValue: function (index) {
-							return 460 - index * 10 - Math.sin(index * Math.PI) * 10;
-						}
-					},
+					waveTable: getModulationIndex,
 					duration: 2,
 					sampleRate: context.sampleRate,
 					amplitude: 1

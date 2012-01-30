@@ -1,5 +1,5 @@
 /*global WaveBase: false */
-var EnvelopeWave = function (table) {
+SynthAudioContext.prototype.createEnvelopeWave = function (table) {
 	"use strict";
 	var waveBase = new WaveBase({
 			table: table,
@@ -11,7 +11,7 @@ var EnvelopeWave = function (table) {
 			}
 		});
 
-	this.getValue = function (index) {
+	return function (index) {
 		return waveBase.getValue(index);
 	};
 };

@@ -1,5 +1,5 @@
 /*global WaveBase: false */
-var LoopWave = function (table) {
+SynthAudioContext.prototype.createLoopWave = function (table) {
 	"use strict";
 	var waveBase = new WaveBase({
 			table: table,
@@ -11,7 +11,7 @@ var LoopWave = function (table) {
 			}
 		});
 
-	this.getValue = function (index) {
+	return function (index) {
 		return waveBase.getValue(index);
 	};
 };
