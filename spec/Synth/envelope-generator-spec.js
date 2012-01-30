@@ -7,41 +7,38 @@ describe("EnvelopeGenerator", function () {
 		sampleRate,
 		amplitude,
 		oscillator,
-		context;
+		context,
+		waveTable,
+		spec;
 
 	describe("fixed frequency and amplitude", function () {
 		beforeEach(function () {
-			waveTable = {
-				getValue: function () {
-					return 0.5;
-				}
-			};
 			duration = 2;
 			sampleRate = 2;
 			amplitude = 0.75;
 			context = {
 				sampleRate: sampleRate
 			};
-			oscillator = new EnvelopeGenerator({
+			waveTable = jasmine.createSpy().andReturn(0.5);
+			spec = {
 				waveTable: waveTable,
 				duration: duration,
 				amplitude: amplitude,
 				context: context
-			});
+			};
+			oscillator = new EnvelopeGenerator(spec);
 		});
 
 		it("should retrieve the first value from the wave table", function () {
-			var spy = spyOn(waveTable, "getValue");
 			oscillator.next();
-			expect(spy).toHaveBeenCalledWith(0);
+			expect(waveTable).toHaveBeenCalledWith(0);
 		});
 
 		it("should retrieve the second value with the correct index", function () {
-			var spy = spyOn(waveTable, "getValue"),
-				expectedIndex = 1 / (duration * sampleRate);
+			var expectedIndex = 1 / (duration * sampleRate);
 			oscillator.next();
 			oscillator.next();
-			expect(spy.mostRecentCall.args[0]).toEqual(expectedIndex);
+			expect(waveTable.mostRecentCall.args[0]).toEqual(expectedIndex);
 		});
 
 		it("should return the value from the wave table multiplied by the amplitude", function () {

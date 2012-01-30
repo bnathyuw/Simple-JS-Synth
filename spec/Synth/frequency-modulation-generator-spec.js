@@ -16,8 +16,8 @@ describe("FrequencyModulationGenerator", function () {
 					spec.context = context;
 					return new Oscillator(spec);
 				},
-				createSineWave: function() {
-					return new SineWave();
+				sineWave: function(index) {
+					return index;
 				},
 				createOscillatorAdder: function(spec) {
 					return new OscillatorAdder(spec);

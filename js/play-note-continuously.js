@@ -40,7 +40,7 @@
 			oscillatorNode = context.createOscillatorNode({
 				frequency: getFreq,
 				amplitude: getAmp,
-				waveTable: new SineWave()
+				waveTable: context.sineWave
 			});
 			oscillatorNode.connect(context.destination);
 		};

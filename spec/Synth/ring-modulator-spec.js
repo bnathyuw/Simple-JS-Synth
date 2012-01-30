@@ -24,8 +24,8 @@ describe("RingModulator", function () {
 				spec.context = context;
 				return new Oscillator(spec);
 			},
-			createSineWave: function(spec) {
-				return new SineWave();
+			sineWave: function(index) {
+				return index;
 			}
 		}
 
@@ -37,14 +37,18 @@ describe("RingModulator", function () {
 
 		carrierReference = new Oscillator({
 			amplitude: 1,
-			waveTable: new SineWave(),
+			waveTable: function (index) {
+				return index;
+			},
 			frequency: carrierFrequency,
 			context: context
 		});
 
 		modulatorReference = new Oscillator({
 			amplitude: 1,
-			waveTable: new SineWave(),
+			waveTable: function (index) {
+				return index;
+			},
 			frequency: modulatorFrequency,
 			context: context
 		});

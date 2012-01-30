@@ -11,7 +11,7 @@ var EnvelopeGenerator = function EnvelopeGenerator(spec) {
 				throw { name: "EnvelopeComplete" };
 			}
 
-			var returnValue	= waveTable.getValue(currentIndex);
+			var returnValue	= waveTable(currentIndex);
 			currentIndex = currentIndex + 1 / (duration * sampleRate);
 			return returnValue * amplitude;
 		};

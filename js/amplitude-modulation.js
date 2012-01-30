@@ -42,7 +42,7 @@
 				carrier: context.createOscillator({
 					amplitude: 1,
 					frequency: getCarrier,
-					waveTable: context.createSineWave()
+					waveTable: context.sineWave
 				}),
 				frequency: getModulator
 			});

@@ -11,3 +11,5 @@ var SineWave = function SineWave() {
 SynthAudioContext.prototype.createSineWave = function() {
 	return new SineWave();
 }
+
+SynthAudioContext.prototype.sineWave = new SineWave().getValue;

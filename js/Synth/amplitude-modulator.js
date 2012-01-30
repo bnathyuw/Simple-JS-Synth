@@ -12,7 +12,7 @@ var AmplitudeModulator = function AmplitudeModulator(spec) {
 		modulator = context.createFrequencyCentrer({
 			wave: context.createOscillator({
 				amplitude: 0.5,
-				waveTable: context.createSineWave(),
+				waveTable: context.sineWave,
 				frequency: spec.frequency
 			}),
 			frequency: 0.5

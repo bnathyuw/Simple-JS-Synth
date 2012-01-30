@@ -2,22 +2,19 @@
 	Oscillator: false */
 describe("Oscillator", function () {
 	"use strict";
-	var waveTable,
-		frequency,
+	var frequency,
 		sampleRate,
 		amplitude,
-		oscillator;
+		oscillator,
+		waveTable,
+		spec;
 
 	describe("fixed frequency and amplitude", function () {
 		beforeEach(function () {
-			waveTable = {
-				getValue: function () {
-					return 0.5;
-				}
-			};
 			frequency = 440;
 			sampleRate = 44800;
 			amplitude = 0.75;
+			waveTable = jasmine.createSpy().andReturn(0.5);
 			oscillator = new Oscillator({
 				waveTable: waveTable,
 				frequency: frequency,
@@ -29,17 +26,15 @@ describe("Oscillator", function () {
 		});
 
 		it("should retrieve the first value from the wave table", function () {
-			var spy = spyOn(waveTable, "getValue");
 			oscillator.next();
-			expect(spy).toHaveBeenCalledWith(0);
+			expect(waveTable).toHaveBeenCalledWith(0);
 		});
 
 		it("should retrieve the second value with the correct index", function () {
-			var spy = spyOn(waveTable, "getValue"),
-				expectedIndex = frequency  / sampleRate;
+			var expectedIndex = frequency  / sampleRate;
 			oscillator.next();
 			oscillator.next();
-			expect(spy.mostRecentCall.args[0]).toEqual(expectedIndex);
+			expect(waveTable.mostRecentCall.args[0]).toEqual(expectedIndex);
 		});
 
 		it("should return the value from the wave table multiplied by the amplitude", function () {
@@ -50,11 +45,6 @@ describe("Oscillator", function () {
 
 	describe("env gen provides amplitude", function () {
 		beforeEach(function () {
-			waveTable = {
-				getValue: function () {
-					return 0.4;
-				}
-			};
 			amplitude = {
 				next: function () {
 					return 0.5;
@@ -63,7 +53,9 @@ describe("Oscillator", function () {
 			frequency = 440;
 			sampleRate = 44800;
 			oscillator = new Oscillator({
-				waveTable: waveTable,
+				waveTable: function () {
+					return 0.4;
+				},
 				frequency: frequency,
 				context: {
 					sampleRate: sampleRate,
@@ -86,17 +78,13 @@ describe("Oscillator", function () {
 
 	describe("env gen provides frequency", function () {
 		beforeEach(function () {
-			waveTable = {
-				getValue: function () {
-					return 0.4;
-				}
-			};
 			amplitude = 1;
 			frequency = {
 				next: function () {
 					return 448;
 				}
 			};
+			waveTable = jasmine.createSpy().andReturn(0.4);
 			sampleRate = 44800;
 			oscillator = new Oscillator({
 				waveTable: waveTable,
@@ -109,16 +97,14 @@ describe("Oscillator", function () {
 		});
 
 		it("should call frequency.next", function () {
-			var spy = spyOn(frequency, "next");
 			oscillator.next();
-			expect(spy).toHaveBeenCalled();
+			expect(waveTable).toHaveBeenCalled();
 		});
 
 		it("should use the value from the frequency generator to look up the wave value", function () {
-			var spy = spyOn(waveTable, "getValue");
 			oscillator.next();
 			oscillator.next();
-			expect(spy.mostRecentCall.args[0]).toEqual(0.01);
+			expect(waveTable.mostRecentCall.args[0]).toEqual(0.01);
 		});
 
 	});

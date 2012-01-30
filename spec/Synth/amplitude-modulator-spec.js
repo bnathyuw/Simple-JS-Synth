@@ -27,8 +27,8 @@ describe("AmplitudeModulator", function () {
 				spec.context = context;
 				return new Oscillator(spec);
 			},
-			createSineWave: function() {
-				return new SineWave();
+			sineWave: function(index) {
+				return 1;
 			},
 			createFrequencyCentrer: function(spec) {
 				return new FrequencyCentrer(spec);
@@ -43,7 +43,9 @@ describe("AmplitudeModulator", function () {
 
 		modulatorReference = new Oscillator({
 			amplitude: 1,
-			waveTable: new SineWave(),
+			waveTable: function() {
+				return 1;
+			},
 			frequency: modulatorFrequency,
 			context: context
 		});

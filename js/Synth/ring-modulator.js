@@ -10,13 +10,13 @@ var RingModulator = function RingModulator(spec) {
 
 		carrier = context.createOscillator({
 			amplitude: 1,
-			waveTable: context.createSineWave(),
+			waveTable: context.sineWave,
 			frequency: spec.carrierFrequency
 		}),
 
 		modulator = context.createOscillator({
 			amplitude: 1,
-			waveTable: context.createSineWave(),
+			waveTable: context.sineWave,
 			frequency: spec.modulatorFrequency
 		}),
 

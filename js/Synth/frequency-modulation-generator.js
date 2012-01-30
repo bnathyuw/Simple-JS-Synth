@@ -40,7 +40,7 @@ var FrequencyModulationGenerator = function FrequencyModulationGenerator(spec) {
 		frequencyOscillator = context.createOscillator({
 			frequency: modulatorFrequency,
 			amplitude: modulatorAmplitude,
-			waveTable: context.createSineWave()
+			waveTable: context.sineWave
 		}),
 		addedFrequencies = context.createOscillatorAdder({
 			oscillators: [
@@ -51,7 +51,7 @@ var FrequencyModulationGenerator = function FrequencyModulationGenerator(spec) {
 		oscillator = context.createOscillator({
 			frequency: addedFrequencies,
 			amplitude: carrierAmplitude,
-			waveTable: context.createSineWave()
+			waveTable: context.sineWave
 		}),
 		next = function () {
 			return oscillator.next();
