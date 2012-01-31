@@ -3,7 +3,7 @@
 	Oscillator: false, SineWave: false,
 	FrequencyCentrer: false, OscillatorAdder: false,
 	FrequencyModulationGenerator: false, EnvelopeGenerator: false,
-	ADSRWave: false */
+	ADSRWave: false, SynthAudioContext: false */
 (function () {
 	"use strict";
 

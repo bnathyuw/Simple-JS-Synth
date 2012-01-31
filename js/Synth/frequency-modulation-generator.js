@@ -1,4 +1,4 @@
-/*global Oscillator: false, OscillatorAdder: false, SineWave: false */
+/*global Oscillator: false, OscillatorAdder: false, SineWave: false, SynthAudioContext: false */
 /**
   * I haven't called this FrequencyModulator as it doesn’t 
   * modulate an existing signal, but rather creates a new
@@ -36,7 +36,6 @@ var FrequencyModulationGenerator = function FrequencyModulationGenerator(spec) {
 			}
 		},
 		context = spec.context,
-		sampleRate = context.sampleRate,
 		frequencyOscillator = context.createOscillator({
 			frequency: modulatorFrequency,
 			amplitude: modulatorAmplitude,
@@ -60,12 +59,14 @@ var FrequencyModulationGenerator = function FrequencyModulationGenerator(spec) {
 	this.next = next;
 };
 
-SynthAudioContext.prototype.createFrequencyModulationGenerator = function(spec) {
+SynthAudioContext.prototype.createFrequencyModulationGenerator = function (spec) {
+	"use strict";
 	spec.context = this;
 	return new FrequencyModulationGenerator(spec);
 };
 
-SynthAudioContext.prototype.createFrequencyModulationGeneratorNode = function(spec) {
+SynthAudioContext.prototype.createFrequencyModulationGeneratorNode = function (spec) {
+	"use strict";
 	return this.createOscillatorJavaScriptNode({
 		oscillator: this.createFrequencyModulationGenerator(spec)
 	});

@@ -1,4 +1,6 @@
+/*global SynthAudioContext: false */
 SynthAudioContext.prototype.triangleWave = function (index) {
+	"use strict";
 	var i = index % 1;
 	if (i < 0.25) {
 		return i * 4;

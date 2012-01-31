@@ -1,5 +1,5 @@
 /*global describe: false, beforeEach: false, it: false, spyOn: false, expect: false,
-	EnvelopeGenerator: false */
+	EnvelopeGenerator: false, jasmine: false */
 describe("EnvelopeGenerator", function () {
 	"use strict";
 	var waveTable,
@@ -8,7 +8,6 @@ describe("EnvelopeGenerator", function () {
 		amplitude,
 		oscillator,
 		context,
-		waveTable,
 		spec;
 
 	describe("fixed frequency and amplitude", function () {

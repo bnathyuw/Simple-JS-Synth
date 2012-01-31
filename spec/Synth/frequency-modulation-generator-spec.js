@@ -1,5 +1,5 @@
 /*global describe: false, beforeEach: false, it: false, expect: false,
-	FrequencyModulationGenerator: false */
+	FrequencyModulationGenerator: false, Oscillator: false, OscillatorAdder: false */
 
 describe("FrequencyModulationGenerator", function () {
 	"use strict";
@@ -16,13 +16,13 @@ describe("FrequencyModulationGenerator", function () {
 					spec.context = context;
 					return new Oscillator(spec);
 				},
-				sineWave: function(index) {
+				sineWave: function (index) {
 					return index;
 				},
-				createOscillatorAdder: function(spec) {
+				createOscillatorAdder: function (spec) {
 					return new OscillatorAdder(spec);
 				}
-			},
+			};
 			frequencyModulationGenerator = new FrequencyModulationGenerator({
 				carrierFrequency: 440,
 				carrierAmplitude: 1,

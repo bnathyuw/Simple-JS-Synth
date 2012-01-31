@@ -1,4 +1,6 @@
-SynthAudioContext.prototype.createADSRWave = function(spec) {
+/*global SynthAudioContext: false */
+SynthAudioContext.prototype.createADSRWave = function (spec) {
+	"use strict";
 	var totalTime = spec.attackTime + spec.decayTime + spec.sustainTime + spec.releaseTime,
 		attackTime = spec.attackTime / totalTime,
 		decayTime = spec.decayTime / totalTime,
@@ -6,7 +8,7 @@ SynthAudioContext.prototype.createADSRWave = function(spec) {
 		sustainTime = spec.sustainTime / totalTime,
 		releaseTime = spec.releaseTime / totalTime;
 
-	return adsrWave = function (index) {
+	return function (index) {
 		if (index < attackTime) {
 			return index / attackTime;
 		}

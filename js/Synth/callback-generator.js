@@ -1,3 +1,4 @@
+/*global SynthAudioContext: false */
 var CallbackGenerator = function CallbackGenerator(spec) {
 	"use strict";
 	var callback = spec.callback,
@@ -8,6 +9,7 @@ var CallbackGenerator = function CallbackGenerator(spec) {
 	this.next = next;
 };
 
-SynthAudioContext.prototype.createCallbackGenerator = function(spec) {
+SynthAudioContext.prototype.createCallbackGenerator = function (spec) {
+	"use strict";
 	return new CallbackGenerator(spec);
 }

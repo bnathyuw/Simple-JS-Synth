@@ -1,5 +1,5 @@
 /*global Oscillator: false, SineWave: false,
-	FrequencyCentrer: false */
+	FrequencyCentrer: false, SynthAudioContext: false */
 var AmplitudeModulator = function AmplitudeModulator(spec) {
 	"use strict";
 
@@ -25,12 +25,14 @@ var AmplitudeModulator = function AmplitudeModulator(spec) {
 	this.next = next;
 };
 
-SynthAudioContext.prototype.createAmplitudeModulator = function(spec) {
+SynthAudioContext.prototype.createAmplitudeModulator = function (spec) {
+	"use strict";
 	spec.context = this;
 	return new AmplitudeModulator(spec);
 };
 
-SynthAudioContext.prototype.createAmplitudeModulatorNode = function(spec) {
+SynthAudioContext.prototype.createAmplitudeModulatorNode = function (spec) {
+	"use strict";
 	return this.createOscillatorJavaScriptNode({
 		oscillator: this.createAmplitudeModulator(spec)
 	});

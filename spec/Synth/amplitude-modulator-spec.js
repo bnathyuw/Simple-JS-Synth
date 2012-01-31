@@ -1,5 +1,5 @@
 /*global describe: false, beforeEach: false, it: false, spyOn: false, expect: false,
-	AmplitudeModulator: false, Oscillator: false, SineWave: false */
+	AmplitudeModulator: false, Oscillator: false, SineWave: false, FrequencyCentrer: false */
 describe("AmplitudeModulator", function () {
 	"use strict";
 
@@ -20,17 +20,17 @@ describe("AmplitudeModulator", function () {
 		modulatorFrequency = 660;
 
 		sampleRate = 44800;
-		
+
 		context = {
 			sampleRate: sampleRate,
-			createOscillator: function(spec) {
+			createOscillator: function (spec) {
 				spec.context = context;
 				return new Oscillator(spec);
 			},
-			sineWave: function(index) {
-				return 1;
+			sineWave: function (index) {
+				return index;
 			},
-			createFrequencyCentrer: function(spec) {
+			createFrequencyCentrer: function (spec) {
 				return new FrequencyCentrer(spec);
 			}
 		};
@@ -43,8 +43,8 @@ describe("AmplitudeModulator", function () {
 
 		modulatorReference = new Oscillator({
 			amplitude: 1,
-			waveTable: function() {
-				return 1;
+			waveTable: function (index) {
+				return index;
 			},
 			frequency: modulatorFrequency,
 			context: context

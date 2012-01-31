@@ -1,3 +1,4 @@
+/*global SynthAudioContext: false */
 var OscillatorJavaScriptNode = function OscillatorJavaScriptNode(spec) {
 	"use strict";
 	var context = spec.context,
@@ -28,6 +29,7 @@ var OscillatorJavaScriptNode = function OscillatorJavaScriptNode(spec) {
 };
 
 SynthAudioContext.prototype.createOscillatorJavaScriptNode = function (spec) {
+	"use strict";
 	spec.context = this;
 	return new OscillatorJavaScriptNode(spec);	
 }

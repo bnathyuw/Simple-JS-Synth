@@ -1,4 +1,4 @@
-/*global Oscillator: false, SineWave: false */
+/*global Oscillator: false, SineWave: false, SynthAudioContext: false */
 var RingModulator = function RingModulator(spec) {
 	"use strict";
 
@@ -27,12 +27,14 @@ var RingModulator = function RingModulator(spec) {
 	this.next = next;
 };
 
-SynthAudioContext.prototype.createRingModulator = function(spec) {
+SynthAudioContext.prototype.createRingModulator = function (spec) {
+	"use strict";
 	spec.context = this;
 	return new RingModulator(spec);
 }
 
-SynthAudioContext.prototype.createRingModulatorNode = function(spec) {
+SynthAudioContext.prototype.createRingModulatorNode = function (spec) {
+	"use strict";
 	return this.createOscillatorJavaScriptNode({
 		oscillator: this.createRingModulator(spec)
 	});	

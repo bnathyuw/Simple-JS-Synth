@@ -1,4 +1,4 @@
-/*global WaveBase: false */
+/*global WaveBase: false, SynthAudioContext: false */
 SynthAudioContext.prototype.createLoopWave = function (table) {
 	"use strict";
 	var waveBase = new WaveBase({

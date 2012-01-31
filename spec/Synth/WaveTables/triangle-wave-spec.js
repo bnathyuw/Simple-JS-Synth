@@ -1,4 +1,5 @@
-/*global describe: false, it: false, expect: false, TriangleWave: false */
+/*global describe: false, it: false, expect: false, TriangleWave: false,
+	SynthAudioContext: false */
 
 describe("TriangleWave", function () {
 	"use strict";

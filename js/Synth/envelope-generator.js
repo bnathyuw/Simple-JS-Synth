@@ -1,3 +1,4 @@
+/*global SynthAudioContext: false */
 var EnvelopeGenerator = function EnvelopeGenerator(spec) {
 	"use strict";
 	var currentIndex = 0,
@@ -19,7 +20,8 @@ var EnvelopeGenerator = function EnvelopeGenerator(spec) {
 	this.next = next;
 };
 
-SynthAudioContext.prototype.createEnvelopeGenerator = function(spec) {
+SynthAudioContext.prototype.createEnvelopeGenerator = function (spec) {
+	"use strict";
 	spec.context = this;
 	return new EnvelopeGenerator(spec);
-}
+};

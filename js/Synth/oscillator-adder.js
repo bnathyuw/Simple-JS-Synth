@@ -1,3 +1,4 @@
+/*global SynthAudioContext: false */
 var OscillatorAdder = function OscillatorAdder(spec) {
 	"use strict";
 	var oscillators = spec.oscillators,
@@ -16,6 +17,7 @@ var OscillatorAdder = function OscillatorAdder(spec) {
 	this.next = next;
 };
 
-SynthAudioContext.prototype.createOscillatorAdder = function(spec) {
+SynthAudioContext.prototype.createOscillatorAdder = function (spec) {
+	"use strict";
 	return new OscillatorAdder(spec);
-}
+};

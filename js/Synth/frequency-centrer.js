@@ -1,3 +1,4 @@
+/*global SynthAudioContext: false */
 var FrequencyCentrer = function FrequencyCentrer(spec) {
 	"use strict";
 
@@ -10,6 +11,7 @@ var FrequencyCentrer = function FrequencyCentrer(spec) {
 	this.next = next;
 };
 
-SynthAudioContext.prototype.createFrequencyCentrer = function(spec) {
+SynthAudioContext.prototype.createFrequencyCentrer = function (spec) {
+	"use strict";
 	return new FrequencyCentrer(spec);
-}
+};

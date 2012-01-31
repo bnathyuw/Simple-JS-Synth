@@ -1,4 +1,5 @@
-/*global describe: false, it: false, expect: false, ADSRWave: false */
+/*global describe: false, it: false, expect: false, ADSRWave: false,
+	SynthAudioContext: false */
 describe("ADSRWave", function () {
 	"use strict";
 

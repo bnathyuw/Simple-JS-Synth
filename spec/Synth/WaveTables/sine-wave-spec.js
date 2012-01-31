@@ -1,4 +1,5 @@
-/*global describe: false, it: false, expect: false, SineWave: false */
+/*global describe: false, it: false, expect: false, SineWave: false,
+	SynthAudioContext: false */
 
 describe("SineWave", function () {
 	"use strict";

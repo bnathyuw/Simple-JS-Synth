@@ -1,13 +1,12 @@
 /*global describe: false, beforeEach: false, it: false, spyOn: false, expect: false,
-	Oscillator: false */
+	Oscillator: false, jasmine: false */
 describe("Oscillator", function () {
 	"use strict";
 	var frequency,
 		sampleRate,
 		amplitude,
 		oscillator,
-		waveTable,
-		spec;
+		waveTable;
 
 	describe("fixed frequency and amplitude", function () {
 		beforeEach(function () {
@@ -58,7 +57,7 @@ describe("Oscillator", function () {
 				},
 				frequency: frequency,
 				context: {
-					sampleRate: sampleRate,
+					sampleRate: sampleRate
 				},
 				amplitude: amplitude
 			});
@@ -90,7 +89,7 @@ describe("Oscillator", function () {
 				waveTable: waveTable,
 				frequency: frequency,
 				context: {
-					sampleRate: sampleRate,
+					sampleRate: sampleRate
 				},
 				amplitude: amplitude
 			});

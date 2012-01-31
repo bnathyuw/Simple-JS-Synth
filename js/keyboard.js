@@ -1,6 +1,7 @@
 /*global document: false, alert: false,
 	webkitAudioContext: false , ADSRWave: false, EnvelopeGenerator: false, Oscillator: false,
-	SineWave: false, OscillatorJavaScriptNode: false, FrequencyModulationGenerator: false */
+	SineWave: false, OscillatorJavaScriptNode: false, FrequencyModulationGenerator: false,
+	SynthAudioContext: false	*/
 (function () {
 	"use strict";
 
@@ -21,7 +22,6 @@
 	playPitch = function (pitch) {
 		var ampWave,
 			ampEnv,
-			osc,
 			node;
 
 		ampWave = context.createADSRWave({
@@ -42,7 +42,7 @@
 			carrierFrequency: pitch,
 			carrierAmplitude: ampEnv,
 			modulatorFrequency: pitch * 2,
-			modulationIndex: ampEnv,
+			modulationIndex: ampEnv
 		});
 
 		node.connect(context.destination);
