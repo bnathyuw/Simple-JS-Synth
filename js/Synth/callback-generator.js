@@ -12,4 +12,4 @@ var CallbackGenerator = function CallbackGenerator(spec) {
 SynthAudioContext.prototype.createCallbackGenerator = function (spec) {
 	"use strict";
 	return new CallbackGenerator(spec);
-}
+};

@@ -1,5 +1,5 @@
 ﻿/*global describe: false, beforeEach: false, it: false, expect: false,
-	LoopWave: false */
+	LoopWave: false, SynthAudioContext: false */
 describe("LoopWave", function () {
 	"use strict";
 

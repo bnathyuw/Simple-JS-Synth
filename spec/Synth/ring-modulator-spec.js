@@ -17,17 +17,17 @@ describe("RingModulator", function () {
 		modulatorFrequency = 660;
 
 		sampleRate = 44800;
-		
+
 		context = {
 			sampleRate: sampleRate,
-			createOscillator: function(spec) {
+			createOscillator: function (spec) {
 				spec.context = context;
 				return new Oscillator(spec);
 			},
-			sineWave: function(index) {
+			sineWave: function (index) {
 				return index;
 			}
-		}
+		};
 
 		ringModulator = new RingModulator({
 			carrierFrequency: carrierFrequency,

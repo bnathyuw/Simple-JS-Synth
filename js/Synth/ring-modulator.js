@@ -31,11 +31,11 @@ SynthAudioContext.prototype.createRingModulator = function (spec) {
 	"use strict";
 	spec.context = this;
 	return new RingModulator(spec);
-}
+};
 
 SynthAudioContext.prototype.createRingModulatorNode = function (spec) {
 	"use strict";
 	return this.createOscillatorJavaScriptNode({
 		oscillator: this.createRingModulator(spec)
-	});	
-}
+	});
+};

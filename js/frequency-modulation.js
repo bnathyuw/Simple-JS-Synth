@@ -1,6 +1,6 @@
 /*jslint browser: true */
 /*global webkitAudioContext: false, OscillatorJavaScriptNode: false,
-	FrequencyModulationGenerator: false	*/
+	FrequencyModulationGenerator: false, SynthAudioContext: false	*/
 (function () {
 	"use strict";
 

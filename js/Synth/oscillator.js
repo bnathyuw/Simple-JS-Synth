@@ -30,7 +30,7 @@ var Oscillator = function Oscillator(spec) {
 SynthAudioContext.prototype.createOscillator = function (spec) {
 	"use strict";
 	spec.context = this;
-	return new Oscillator(spec);	
+	return new Oscillator(spec);
 };
 
 SynthAudioContext.prototype.createOscillatorNode = function (spec) {

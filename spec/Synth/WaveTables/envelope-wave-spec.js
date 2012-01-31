@@ -1,5 +1,5 @@
 /*global describe: false, beforeEach: false, it: false, expect: false,
-	EnvelopeWave: false */
+	EnvelopeWave: false, SynthAudioContext: false */
 describe("EnvelopeWave", function () {
 	"use strict";
 
