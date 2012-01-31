@@ -7,8 +7,7 @@
 (function () {
 	"use strict";
 
-	var AC = webkitAudioContext,
-		context = new AC(),
+	var context = new SynthAudioContext(),
 		playButton = document.getElementsByName("play")[0],
 		stopButton = document.getElementsByName("stop")[0],
 		oscillatorNode,
@@ -27,8 +26,8 @@
 				modulationIndex;
 
 			carrierFrequency = 220;
-			carrierAmplitude = new EnvelopeGenerator({
-				waveTable: new ADSRWave({
+			carrierAmplitude = context.createEnvelopeGenerator({
+				waveTable: context.createADSRWave({
 					attackTime: 5,
 					decayTime: 0,
 					sustainLevel: 1,
@@ -40,8 +39,8 @@
 				amplitude: 50
 			});
 			modulatorFrequency = 110;
-			modulationIndex = new EnvelopeGenerator({
-				waveTable: new ADSRWave({
+			modulationIndex = context.createEnvelopeGenerator({
+				waveTable: context.createADSRWave({
 					attackTime: 10,
 					decayTime: 0,
 					sustainLevel: 1,
@@ -53,9 +52,9 @@
 				amplitude: 1
 			});
 
-			oscillatorNode = new OscillatorJavaScriptNode({
+			oscillatorNode = context.createOscillatorJavaScriptNode({
 				context: context,
-				oscillator: new FrequencyModulationGenerator({
+				oscillator: context.createFrequencyModulationGenerator({
 					carrierFrequency: carrierFrequency,
 					carrierAmplitude: carrierAmplitude,
 					modulatorFrequency: modulatorFrequency,
