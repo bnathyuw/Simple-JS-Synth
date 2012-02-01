@@ -1,5 +1,6 @@
 /*global describe: false, beforeEach: false, it: false, expect: false,
-	FrequencyModulationGenerator: false, Oscillator: false, OscillatorAdder: false */
+	FrequencyModulationGenerator: false, Oscillator: false, OscillatorAdder: false,
+	SynthAudioContext: false */
 
 describe("FrequencyModulationGenerator", function () {
 	"use strict";
@@ -21,7 +22,8 @@ describe("FrequencyModulationGenerator", function () {
 				},
 				createOscillatorAdder: function (spec) {
 					return new OscillatorAdder(spec);
-				}
+				},
+				createGenerator: SynthAudioContext.prototype.createGenerator
 			};
 			frequencyModulationGenerator = new FrequencyModulationGenerator({
 				carrierFrequency: 440,

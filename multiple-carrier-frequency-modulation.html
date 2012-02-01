@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<title>Multiple Carrier Frequency modulation</title>
+<style>
+label { display: block; }
+</style>
+</head>
+<body>
+<header>
+	<h1>Multiple Carrier Frequency modulation</h1>
+</header>
+<nav>
+<ul>
+	<li><a href=".">Home</a></li>
+	<li><a href="play-note.html">Play one note</a></li>
+	<li><a href="play-note-continuously.html">Play note continuously</a></li>
+	<li><a href="ring-modulation.html">Ring modulation</a></li>
+	<li><a href="amplitude-modulation.html">Amplitude modulation</a></li>
+	<li><a href="frequency-modulation.html">Frequency modulation</a></li>
+	<li><a href="keyboard.html">Keyboard</a></li>
+</ul>
+</nav>
+<label>Carrier frequency <input type="range" name="carrier" min="-1" max="1" step="0.01" value="0" /></label>
+<label>Modulation index <input type="range" name="modulation-index" min="0" max="100" step="0.1" value="1" /></label>
+<label>Modulator frequency <input type="range" name="modulator" min="0" max="1000" step="1" value="5" /></label>
+<input type="button" name="play" value="Play" />
+<input type="button" name="stop" value="Stop" />
+<script src="js/AudioAPI/synth-audio-context.js"></script>
+<script src="js/AudioAPI/oscillator-java-script-node.js"></script>
+<script src="js/Synth/WaveTables/sine-wave.js"></script>
+<script src="js/Synth/oscillator.js"></script>
+<script src="js/Synth/callback-generator.js"></script>
+<script src="js/Synth/oscillator-adder.js"></script>
+<script src="js/Synth/multiple-carrier-frequency-modulator.js"></script>
+<script src="js/multiple-carrier-frequency-modulation.js"></script>
+</body>
+</html>

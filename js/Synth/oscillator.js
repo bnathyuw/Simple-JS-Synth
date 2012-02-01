@@ -2,22 +2,11 @@
 var Oscillator = function Oscillator(spec) {
 	"use strict";
 	var currentIndex = 0,
-		isFunction = function (object) {
-			return !!(object && object.constructor && object.call && object.apply);
-		},
 		waveTable = spec.waveTable,
-		frequency = spec.frequency.next ? spec.frequency : {
-			next: isFunction(spec.frequency) ? spec.frequency : function () {
-				return spec.frequency;
-			}
-		},
 		context = spec.context,
+		frequency = context.createGenerator(spec.frequency),
 		sampleRate = context.sampleRate,
-		amplitude = spec.amplitude.next ? spec.amplitude : {
-			next: isFunction(spec.amplitude) ? spec.amplitude : function () {
-				return spec.amplitude;
-			}
-		},
+		amplitude = context.createGenerator(spec.amplitude),
 		next = function () {
 			var returnValue = waveTable(currentIndex);
 			currentIndex = currentIndex + frequency.next() / sampleRate;

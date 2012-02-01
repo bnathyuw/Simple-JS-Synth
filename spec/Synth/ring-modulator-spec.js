@@ -1,5 +1,5 @@
 /*global describe: false, beforeEach: false, it: false, spyOn: false, expect: false,
-	RingModulator: false, Oscillator: false, SineWave: false */
+	RingModulator: false, Oscillator: false, SineWave: false, SynthAudioContext: false */
 describe("RingModulator", function () {
 	"use strict";
 
@@ -26,7 +26,8 @@ describe("RingModulator", function () {
 			},
 			sineWave: function (index) {
 				return index;
-			}
+			},
+			createGenerator: SynthAudioContext.prototype.createGenerator
 		};
 
 		ringModulator = new RingModulator({

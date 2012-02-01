@@ -22,3 +22,15 @@ var SynthAudioContext = function SynthAudioContext() {
 		return audioContext.createJavaScriptNode(bufferSize, numberOfInputs, numberOfOutputs);
 	};
 };
+
+SynthAudioContext.prototype.createGenerator = function (input) {
+	"use strict";
+	var isFunction = function (object) {
+		return !!(object && object.constructor && object.call && object.apply);
+	};
+	return input.next ? input : {
+		next: isFunction(input) ? input : function () {
+			return input;
+		}
+	};
+};

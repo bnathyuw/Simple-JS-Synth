@@ -11,31 +11,16 @@ var FrequencyModulationGenerator = function FrequencyModulationGenerator(spec) {
 		return new FrequencyModulationGenerator(spec);
 	}
 
-	var isFunction = function (object) {
-			return !!(object && object.constructor && object.call && object.apply);
-		},
-		carrierFrequency = spec.carrierFrequency.next ? spec.carrierFrequency : {
-			next: isFunction(spec.carrierFrequency) ? spec.carrierFrequency : function () {
-				return spec.carrierFrequency;
-			}
-		},
-		carrierAmplitude = spec.carrierAmplitude || 1,
-		modulatorFrequency = spec.modulatorFrequency.next ? spec.modulatorFrequency : {
-			next: isFunction(spec.modulatorFrequency) ? spec.modulatorFrequency : function () {
-				return spec.modulatorFrequency;
-			}
-		},
-		modulationIndex = spec.modulationIndex.next ? spec.modulationIndex : {
-			next: isFunction(spec.modulationIndex) ? spec.modulationIndex : function () {
-				return spec.modulationIndex;
-			}
-		},
+	var context = spec.context,
+		carrierFrequency = context.createGenerator(spec.carrierFrequency),
+		carrierAmplitude = context.createGenerator(spec.carrierAmplitude || 1),
+		modulatorFrequency = context.createGenerator(spec.modulatorFrequency),
+		modulationIndex = context.createGenerator(spec.modulationIndex),
 		modulatorAmplitude = {
 			next: function () {
 				return modulatorFrequency.next() * modulationIndex.next();
 			}
 		},
-		context = spec.context,
 		frequencyOscillator = context.createOscillator({
 			frequency: modulatorFrequency,
 			amplitude: modulatorAmplitude,

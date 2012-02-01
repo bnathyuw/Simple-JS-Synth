@@ -1,5 +1,6 @@
 /*global describe: false, beforeEach: false, it: false, spyOn: false, expect: false,
-	AmplitudeModulator: false, Oscillator: false, SineWave: false, FrequencyCentrer: false */
+	AmplitudeModulator: false, Oscillator: false, SineWave: false, FrequencyCentrer: false,
+	SynthAudioContext: false */
 describe("AmplitudeModulator", function () {
 	"use strict";
 
@@ -32,7 +33,8 @@ describe("AmplitudeModulator", function () {
 			},
 			createFrequencyCentrer: function (spec) {
 				return new FrequencyCentrer(spec);
-			}
+			},
+			createGenerator: SynthAudioContext.prototype.createGenerator
 		};
 
 		amplitudeModulator = new AmplitudeModulator({

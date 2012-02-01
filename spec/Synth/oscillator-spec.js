@@ -1,5 +1,5 @@
 /*global describe: false, beforeEach: false, it: false, spyOn: false, expect: false,
-	Oscillator: false, jasmine: false */
+	Oscillator: false, jasmine: false, SynthAudioContext: false */
 describe("Oscillator", function () {
 	"use strict";
 	var frequency,
@@ -18,7 +18,8 @@ describe("Oscillator", function () {
 				waveTable: waveTable,
 				frequency: frequency,
 				context: {
-					sampleRate: sampleRate
+					sampleRate: sampleRate,
+					createGenerator: SynthAudioContext.prototype.createGenerator
 				},
 				amplitude: amplitude
 			});
@@ -57,7 +58,8 @@ describe("Oscillator", function () {
 				},
 				frequency: frequency,
 				context: {
-					sampleRate: sampleRate
+					sampleRate: sampleRate,
+					createGenerator: SynthAudioContext.prototype.createGenerator
 				},
 				amplitude: amplitude
 			});
@@ -89,7 +91,8 @@ describe("Oscillator", function () {
 				waveTable: waveTable,
 				frequency: frequency,
 				context: {
-					sampleRate: sampleRate
+					sampleRate: sampleRate,
+					createGenerator: SynthAudioContext.prototype.createGenerator
 				},
 				amplitude: amplitude
 			});
