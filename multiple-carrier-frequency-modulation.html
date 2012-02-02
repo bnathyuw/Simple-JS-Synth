@@ -22,7 +22,8 @@ label { display: block; }
 	<li><a href="keyboard.html">Keyboard</a></li>
 </ul>
 </nav>
-<label>Carrier frequency <input type="range" name="carrier" min="-1" max="1" step="0.01" value="0" /></label>
+<label>Carrier base frequency <input type="range" name="carrier" min="-1" max="1" step="0.01" value="0" /></label>
+<label>Carrier frequency multipliers (comma separated) <input type="text" name="carrier-multipliers" value="1" /></input>
 <label>Modulation index <input type="range" name="modulation-index" min="0" max="100" step="0.1" value="1" /></label>
 <label>Modulator frequency <input type="range" name="modulator" min="0" max="1000" step="1" value="5" /></label>
 <input type="button" name="play" value="Play" />

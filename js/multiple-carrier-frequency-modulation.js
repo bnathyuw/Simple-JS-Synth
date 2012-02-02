@@ -5,6 +5,7 @@
 	"use strict";
 
 	var carrierSlider = document.getElementsByName("carrier")[0],
+		carrierMultipliersTextBox = document.getElementsByName("carrier-multipliers")[0],
 		modulatorSlider = document.getElementsByName("modulator")[0],
 		modulationIndexSlider = document.getElementsByName("modulation-index")[0],
 		playButton = document.getElementsByName("play")[0],
@@ -17,6 +18,22 @@
 
 		getCarrier = function () {
 			return 440 * Math.pow(2, +carrierSlider.value);
+		},
+
+		getCarrierFrequencies = function () {
+			var value,
+				inputStrings,
+				frequencies;
+
+			value = carrierMultipliersTextBox.value;
+			inputStrings = value.split(",");
+			frequencies = inputStrings.map(function (input) {
+				return function () {
+					return getCarrier() * +input;
+				};
+			});
+
+			return frequencies;
 		},
 
 		getModulator = function () {
@@ -50,15 +67,7 @@
 			oscillatorNode = context.createMultipleCarrierFrequencyModulatorNode({
 				modulatorFrequency: getModulator,
 				modulationIndex: getModulationIndex,
-				carrierFrequencies: [
-					getCarrier,
-					function () {
-						return getCarrier() * 2;
-					},
-					function () {
-						return getCarrier() * 3;
-					}
-				],
+				carrierFrequencies: getCarrierFrequencies(),
 				carrierAmplitude: 1
 			});
 			oscillatorNode.connect(context.destination);
