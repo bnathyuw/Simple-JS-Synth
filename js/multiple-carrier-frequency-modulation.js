@@ -56,7 +56,7 @@
 						return getCarrier() * 2;
 					},
 					function () {
-						return getCarrier() * 5;
+						return getCarrier() * 3;
 					}
 				],
 				carrierAmplitude: 1
