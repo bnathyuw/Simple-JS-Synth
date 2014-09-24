@@ -1,5 +1,5 @@
 /*jslint browser: true */
-/*global webkitAudioContext: false, OscillatorJavaScriptNode: false,
+/*global OscillatorJavaScriptNode: false,
 	Oscillator: false, CallbackGenerator: false, SineWave: false, RingModulator: false,
 	SynthAudioContext: false	*/
 (function () {

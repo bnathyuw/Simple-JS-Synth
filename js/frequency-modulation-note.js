@@ -1,5 +1,5 @@
 /*jslint browser: true */
-/*global webkitAudioContext: false, OscillatorJavaScriptNode: false,
+/*global OscillatorJavaScriptNode: false,
 	Oscillator: false, SineWave: false,
 	FrequencyCentrer: false, OscillatorAdder: false,
 	FrequencyModulationGenerator: false, EnvelopeGenerator: false,

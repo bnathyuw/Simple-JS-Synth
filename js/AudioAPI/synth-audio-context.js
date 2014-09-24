@@ -1,7 +1,6 @@
-/*global webkitAudioContext */
 var SynthAudioContext = function SynthAudioContext() {
 	"use strict";
-	var Ctor = webkitAudioContext,
+	var Ctor = AudioContext,
 		audioContext = new Ctor();
 
 	this.destination = audioContext.destination;
@@ -18,8 +17,8 @@ var SynthAudioContext = function SynthAudioContext() {
 	this.createBufferSource = function () {
 		return audioContext.createBufferSource;
 	};
-	this.createJavaScriptNode = function (bufferSize, numberOfInputs, numberOfOutputs) {
-		return audioContext.createJavaScriptNode(bufferSize, numberOfInputs, numberOfOutputs);
+	this.createScriptProcessor = function (bufferSize, numberOfInputs, numberOfOutputs) {
+		return audioContext.createScriptProcessor(bufferSize, numberOfInputs, numberOfOutputs);
 	};
 };
 
